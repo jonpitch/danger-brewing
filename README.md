@@ -1,5 +1,7 @@
 # Danger Brewing
 
+[![Build Status](https://travis-ci.org/jonpitch/danger-brewing.svg?branch=master)](https://travis-ci.org/jonpitch/danger-brewing)
+
 The Ember-powered kegerator.
 
 ## Prerequisites
@@ -61,6 +63,13 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Deploying
 
 Coming soon.
+
+## Contributing
+
+* Follow the [GitHub Flow](https://guides.github.com/introduction/flow/)
+  * branch `master`
+  * code
+  * issue a pull request when ready
 
 ## Further Reading / Useful Links
 
