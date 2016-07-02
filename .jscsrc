@@ -1,0 +1,11 @@
+{
+  "preset": "ember-suave",
+  "requireCamelCaseOrUpperCaseIdentifiers": null,
+  "requireEnhancedObjectLiterals": null,
+  "requireArrayDestructuring": null,
+  "requireBlocksOnNewline": null,
+  "requireTemplateStringsForConcatenation": null,
+  "requireObjectDestructuring": null,
+  "disallowConstOutsideModuleScope": null,
+  "disallowDirectPropertyAccess": null
+}
