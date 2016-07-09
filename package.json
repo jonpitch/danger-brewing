@@ -44,6 +44,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-paper": "miguelcobain/ember-paper",
     "ember-resolver": "^2.0.3",
+    "ember-simple-auth": "1.1.0",
     "ember-suave": "3.0.1",
     "emberfire": "2.0.1",
     "loader.js": "^4.0.1"
