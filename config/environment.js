@@ -16,6 +16,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com",
       'frame-src': "'self' https://*.firebaseapp.com",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com",
       'font-src': "'self' http://fonts.gstatic.com",
       'img-src': "'self' data:",
@@ -28,6 +29,11 @@ module.exports = function(environment) {
       authDomain: process.env.FIREBASE_DOMAIN,
       databaseURL: process.env.FIREBASE_DATABASE,
       storageBucket: process.env.FIREBASE_STORAGE
+    },
+
+    // ember-i18n
+    i18n: {
+      defaultLocale: 'en'
     },
 
     APP: {

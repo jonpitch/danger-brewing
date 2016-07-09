@@ -1,0 +1,56 @@
+{{#paper-sidenav-container class="inner-sidenav"}}
+
+  {{! side navigation }}
+  {{#paper-sidenav
+    class="md-whiteframe-z2"
+    name="left"
+    open=leftSideBarOpen
+    onToggle=(action (mut leftSideBarOpen))
+  }}
+    {{#paper-toolbar as |toolbar|}}
+      {{#paper-toolbar-tools}}
+        {{t "app.name"}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{#paper-content}}
+      {{#paper-list}}
+        {{! main }}
+        {{#paper-item}}
+          {{t "app.ipsum"}}
+        {{/paper-item}}
+        {{paper-divider}}
+
+        {{! misc. }}
+        {{#paper-item}}
+          {{t "app.ipsum"}}
+        {{/paper-item}}
+        {{#paper-item}}
+          {{t "app.ipsum"}}
+        {{/paper-item}}
+      {{/paper-list}}
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  {{#paper-card-content class="flex"}}
+    <div class="layout-fill layout-align-start-center layout-column" style="height: 500px">
+
+      {{! toolbar }}
+      {{#paper-toolbar as |toolbar|}}
+        {{#toolbar.tools}}
+          {{#paper-sidenav-toggle name="left" class="hide-gt-sm" as |toggleAction|}}
+            {{#paper-button iconButton=true onClick=(action toggleAction)}}
+              {{paper-icon "menu"}}
+            {{/paper-button}}
+          {{/paper-sidenav-toggle}}
+          <h2>{{t "app.name"}}</h2>
+          <span class="flex"></span>
+        {{/toolbar.tools}}
+      {{/paper-toolbar}}
+
+      {{! content }}
+      {{outlet}}
+
+    </div>
+  {{/paper-card-content}}
+
+{{/paper-sidenav-container}}
