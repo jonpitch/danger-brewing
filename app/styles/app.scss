@@ -1,6 +1,12 @@
 @import 'ember-paper';
 
 // TODO global styles
+body > .ember-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 md-sidenav {
   a {
     text-decoration: none;

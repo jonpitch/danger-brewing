@@ -1,0 +1,15 @@
+{{#if session.isAuthenticated}}
+  <div data-test="add-beer">
+    {{#paper-button raised=true accent=true}}
+      {{t "components.onTap.add"}}
+    {{/paper-button}}
+  </div>
+{{/if}}
+
+<div>
+  {{#each beers as |beer|}}
+
+  {{else}}
+    <p data-test="empty">{{t "components.onTap.empty"}}</p>
+  {{/each}}
+</div>

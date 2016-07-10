@@ -16,7 +16,7 @@
       {{#paper-list}}
         {{! main }}
         {{#paper-item}}
-          {{t "app.ipsum"}}
+          {{link-to (t "app.navigation.onTap") 'index'}}
         {{/paper-item}}
         {{paper-divider}}
 
@@ -38,7 +38,7 @@
   {{/paper-sidenav}}
 
   {{#paper-card-content class="flex"}}
-    <div class="layout-fill layout-align-start-center layout-column" style="height: 500px">
+    <div class="layout-fill layout-column">
 
       {{! toolbar }}
       {{#paper-toolbar as |toolbar|}}
