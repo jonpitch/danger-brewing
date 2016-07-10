@@ -25,7 +25,13 @@
           {{t "app.ipsum"}}
         {{/paper-item}}
         {{#paper-item}}
-          {{t "app.ipsum"}}
+          {{#if session.isAuthenticated}}
+            <span {{action "logout"}} class="link">
+              {{t "app.navigation.logout"}}
+            </span>
+          {{else}}
+            {{link-to (t "app.navigation.login") 'login'}}
+          {{/if}}
         {{/paper-item}}
       {{/paper-list}}
     {{/paper-content}}

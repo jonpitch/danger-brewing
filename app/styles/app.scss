@@ -1,1 +1,14 @@
 @import 'ember-paper';
+
+// TODO global styles
+md-sidenav {
+  a {
+    text-decoration: none;
+  }
+  span.link {
+    cursor: pointer;
+  }
+}
+
+// component styles
+@import 'components/login-form';

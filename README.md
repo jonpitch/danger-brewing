@@ -1,7 +1,5 @@
 # Danger Brewing
 
-[![Build Status](https://travis-ci.org/jonpitch/danger-brewing.svg?branch=master)](https://travis-ci.org/jonpitch/danger-brewing)
-
 The Ember-powered kegerator.
 
 ## Prerequisites

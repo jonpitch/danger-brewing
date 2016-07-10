@@ -1,9 +1,11 @@
-<div layout="" layout-sm="column">
+<div class="layout-column">
   {{paper-input label=(t "components.login.email") type="email" value=email onChange=(action (mut email))}}
+</div>
+<div class="layout-column">
   {{paper-input label=(t "components.login.password") type="password" value=password onChange=(action (mut password))}}
 </div>
 
-<div class="layout-row">
+<div class="layout-column">
   {{#if isLoggingIn}}
     {{paper-progress-circular}}
   {{else}}

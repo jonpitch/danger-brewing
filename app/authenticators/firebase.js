@@ -53,7 +53,7 @@ export default Base.extend({
     return new Ember.RSVP.Promise((resolve, reject) => {
       this.get('_firebase')
         .auth()
-        .signout()
+        .signOut()
         .then(() => {
           resolve(data);
         })

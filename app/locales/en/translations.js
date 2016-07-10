@@ -1,7 +1,11 @@
 export default {
   app: {
     name: 'Danger Brewing',
-    ipsum: 'Lorem Ipsum'
+    ipsum: 'Lorem Ipsum',
+    navigation: {
+      login: 'Log In',
+      logout: 'Log Out'
+    }
   },
 
   components: {
