@@ -1,28 +1,12 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
-import Firebase from 'firebase';
-import config from '../config/environment';
 
 export default Base.extend({
-
-  // firebase reference
-  _firebase: null,
-
-  init() {
-    this._super();
-
-    // initialize firebase
-    if (config.firebase) {
-      const firebase = Firebase.initializeApp(config.firebase);
-      this.set('_firebase', firebase);
-    } else {
-      throw new Error('"firebase" not configured');
-    }
-  },
+  firebaseApp: Ember.inject.service(),
 
   restore(data) {
     return new Ember.RSVP.Promise((resolve, reject) => {
-      this.get('_firebase').auth().onAuthStateChanged((user) => {
+      this.get('firebaseApp').auth().onAuthStateChanged((user) => {
         if (user) {
           resolve(user);
         } else {
@@ -41,7 +25,7 @@ export default Base.extend({
         if (Ember.isEmpty(email) || Ember.isEmpty(password)) {
           reject();
         } else {
-          this.get('_firebase')
+          this.get('firebaseApp')
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then((user) => {
@@ -63,7 +47,7 @@ export default Base.extend({
 
   invalidate(data) {
     return new Ember.RSVP.Promise((resolve, reject) => {
-      this.get('_firebase')
+      this.get('firebaseApp')
         .auth()
         .signOut()
         .then(() => {

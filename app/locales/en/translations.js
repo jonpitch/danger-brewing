@@ -21,6 +21,16 @@ export default {
     onTap: {
       add: 'Add Beer',
       empty: 'there\'s nothing on tap at the moment.'
+    },
+    addBeer: {
+      name: 'Beer Name',
+      style: 'Beer Style',
+      tap: 'Tap',
+      abv: 'ABV',
+      oz: 'Ounces',
+      nitro: 'Nitro',
+      cancel: 'Cancel',
+      save: 'Add Beer'
     }
   },
 

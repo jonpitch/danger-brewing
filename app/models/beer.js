@@ -6,8 +6,9 @@ export default Model.extend({
   name: attr('string'),
   style: attr('string'),
   abv: attr('number'),
-  tapped: attr('date'),
-  kicked: attr('date'),
+  active: attr('boolean', { defaultValue: true }),
+  tapped: attr('number'),
+  kicked: attr('number'),
   nitro: attr('boolean'),
   ounces: attr('number')
 

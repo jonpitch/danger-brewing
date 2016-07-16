@@ -20,7 +20,7 @@
 <div class="layout-column layout-align-center-center">
   {{#if isLoggingIn}}
     {{! TODO paper-progress broken in ember-paper }}
-    loading...
+    {{t "app.ipsum"}}
   {{else}}
     {{#paper-button raised=true primary=true onClick=(action "login")}}
       {{t "components.login.action"}}

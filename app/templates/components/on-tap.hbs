@@ -1,6 +1,6 @@
 {{#if session.isAuthenticated}}
   <div data-test="add-beer">
-    {{#paper-button raised=true accent=true}}
+    {{#paper-button raised=true accent=true onClick=(action "addBeer")}}
       {{t "components.onTap.add"}}
     {{/paper-button}}
   </div>
@@ -8,7 +8,27 @@
 
 <div>
   {{#each beers as |beer|}}
-
+    {{! TODO beer card component }}
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}
+            {{beer.name}}
+          {{/text.headline}}
+          {{#text.subhead}}
+            {{beer.style}}
+          {{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+      {{#card.actions}}
+        {{#if session.isAuthenticated}}
+          {{! delete }}
+          {{#paper-button iconButton=true onClick=(action "archiveBeer" beer)}}
+            {{paper-icon "delete"}}
+          {{/paper-button}}
+        {{/if}}
+      {{/card.actions}}
+    {{/paper-card}}
   {{else}}
     <p data-test="empty">{{t "components.onTap.empty"}}</p>
   {{/each}}
