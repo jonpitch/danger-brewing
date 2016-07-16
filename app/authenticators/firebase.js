@@ -8,13 +8,16 @@ export default Base.extend({
   // firebase reference
   _firebase: null,
 
-  // TODO error handling of config
   init() {
     this._super();
 
     // initialize firebase
-    const firebase = Firebase.initializeApp(config.firebase);
-    this.set('_firebase', firebase);
+    if (config.firebase) {
+      const firebase = Firebase.initializeApp(config.firebase);
+      this.set('_firebase', firebase);
+    } else {
+      throw new Error('"firebase" not configured');
+    }
   },
 
   restore(data) {
@@ -29,24 +32,33 @@ export default Base.extend({
     });
   },
 
-  // TODO non-password authentication
-  // TODO error handling of args
   authenticate(args) {
     // password authentication
-    return new Ember.RSVP.Promise((resolve, reject) => {
-      this.get('_firebase')
-        .auth()
-        .signInWithEmailAndPassword(args.email, args.password)
-        .then((user) => {
-          resolve({
-            provider: 'password',
-            id: user.uid
-          });
-        })
-        .catch((reason) => {
-          reject(reason);
-        });
-    });
+    const { provider } = args;
+    if (provider === 'password') {
+      return new Ember.RSVP.Promise((resolve, reject) => {
+        const { email, password } = args;
+        if (Ember.isEmpty(email) || Ember.isEmpty(password)) {
+          reject();
+        } else {
+          this.get('_firebase')
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .then((user) => {
+              resolve({
+                provider: provider,
+                id: user.uid
+              });
+            })
+            .catch((reason) => {
+              reject(reason);
+            });
+        }
+      });
+    } else {
+      // TODO
+      throw new Error('only the "password" provider is supported');
+    }
   },
 
   invalidate(data) {

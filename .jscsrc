@@ -7,5 +7,6 @@
   "requireTemplateStringsForConcatenation": null,
   "requireObjectDestructuring": null,
   "disallowConstOutsideModuleScope": null,
-  "disallowDirectPropertyAccess": null
+  "disallowDirectPropertyAccess": null,
+  "requireConstForEmberProperties": null
 }

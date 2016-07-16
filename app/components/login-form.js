@@ -26,6 +26,7 @@ export default Ember.Component.extend({
 
       this.set('isLoggingIn', true);
       this.get('session').authenticate('authenticator:firebase', {
+        provider: 'password',
         email: email,
         password: password
       }).then(() => {
