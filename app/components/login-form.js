@@ -1,6 +1,26 @@
 import Ember from 'ember';
+import {
+  validator, buildValidations
+} from 'ember-cp-validations';
 
-export default Ember.Component.extend({
+const Validations = buildValidations({
+  email: [
+    validator('presence', {
+      presence: true,
+      ignoreBlank: true
+    }),
+    validator('format', {
+      regex: /\S+@\S+\.\S+/,
+      messageKey: 'errors.email'
+    })
+  ],
+  password: validator('presence', {
+    presence: true,
+    ignoreBlank: true
+  })
+});
+
+export default Ember.Component.extend(Validations, {
   tagName: 'login-form',
   session: Ember.inject.service(),
   isLoggingIn: false,
@@ -21,22 +41,25 @@ export default Ember.Component.extend({
     // log the user in
     login() {
       const { email, password } = this.getProperties('email', 'password');
-
-      // TODO validations
-
-      this.set('isLoggingIn', true);
-      this.get('session').authenticate('authenticator:firebase', {
-        provider: 'password',
-        email: email,
-        password: password
-      }).then(() => {
-        this.sendAction('redirect');
-      }).catch((reason) => {
-        // TODO notification of error
-        console.log(reason);
-      }).finally(() => {
-        this.set('isLoggingIn', false);
+      this.validate().then(({ m, validations }) => {
+        const isValid = validations.get('isValid');
+        if (isValid) {
+          this.set('isLoggingIn', true);
+          this.get('session').authenticate('authenticator:firebase', {
+            provider: 'password',
+            email: email,
+            password: password
+          }).then(() => {
+            this.sendAction('redirect');
+          }).catch((reason) => {
+            // TODO notification of error - waiting for toast in ember-paper
+            console.log(reason);
+          }).finally(() => {
+            this.set('isLoggingIn', false);
+          });
+        }
       });
+
     }
   }
 });
