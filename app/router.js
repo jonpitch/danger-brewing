@@ -7,6 +7,10 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
+
+  this.route('beer', function() {
+    this.route('add');
+  });
 });
 
 export default Router;

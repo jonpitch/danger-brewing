@@ -1,0 +1,69 @@
+{{! beer name }}
+<div class="layout-column layout-align-center-center">
+  {{paper-input
+    label=(t "components.addBeer.name")
+    value=name
+    required=true
+    onChange=(action (mut name))
+    errors=validations.attrs.name.messages}}
+</div>
+
+{{! style }}
+<div class="layout-column layout-align-center-center">
+  {{paper-input
+    label=(t "components.addBeer.style")
+    value=style
+    required=true
+    onChange=(action (mut style))
+    errors=validations.attrs.style.messages}}
+</div>
+
+{{! tap }}
+<div class="layout-column layout-align-center-center">
+  {{paper-input
+    label=(t "components.addBeer.tap")
+    type="number"
+    value=tap
+    required=true
+    onChange=(action (mut tap))
+    errors=validations.attrs.tap.messages}}
+</div>
+
+{{! abv }}
+<div class="layout-column layout-align-center-center">
+  {{paper-input
+    label=(t "components.addBeer.abv")
+    type="number"
+    value=abv
+    required=true
+    onChange=(action (mut abv))
+    errors=validations.attrs.abv.messages}}
+</div>
+
+{{! ounces }}
+<div class="layout-column layout-align-center-center">
+  {{paper-input
+    label=(t "components.addBeer.oz")
+    type="number"
+    value=ounces
+    required=true
+    onChange=(action (mut ounces))
+    errors=validations.attrs.ounces.messages}}
+</div>
+
+{{! nitro }}
+<div class="layout-column layout-align-center-center">
+  {{#paper-switch value=nitro onChange=(action (mut nitro))}}
+    {{t "components.addBeer.nitro"}}
+  {{/paper-switch}}
+</div>
+
+{{! save/cancel }}
+<div class="layout-column layout-align-center-center">
+  {{#paper-button onClick=(action "cancel")}}
+    {{t "components.addBeer.cancel"}}
+  {{/paper-button}}
+  {{#paper-button raised=true primary=true onClick=(action "save")}}
+    {{t "components.addBeer.save"}}
+  {{/paper-button}}
+</div>
