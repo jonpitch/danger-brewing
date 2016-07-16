@@ -4,6 +4,9 @@ export default {
     ipsum: 'Lorem Ipsum',
     navigation: {
       onTap: 'On Tap',
+      status: 'Status',
+      history: 'History',
+      about: 'About',
       login: 'Log In',
       logout: 'Log Out'
     }

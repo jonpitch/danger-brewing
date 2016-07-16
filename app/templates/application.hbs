@@ -18,11 +18,17 @@
         {{#paper-item}}
           {{link-to (t "app.navigation.onTap") 'index'}}
         {{/paper-item}}
+        {{#paper-item}}
+          {{t "app.navigation.status"}}
+        {{/paper-item}}
+        {{#paper-item}}
+          {{t "app.navigation.history"}}
+        {{/paper-item}}
         {{paper-divider}}
 
         {{! misc. }}
         {{#paper-item}}
-          {{t "app.ipsum"}}
+          {{t "app.navigation.about"}}
         {{/paper-item}}
         {{#paper-item}}
           {{#if session.isAuthenticated}}
