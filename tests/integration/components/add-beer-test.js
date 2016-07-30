@@ -13,11 +13,9 @@ test('it renders', function(assert) {
   // TODO elaborate
   const $text = this.$('input[type="text"]');
   const $numbers = this.$('input[type="number"]');
-  const $nitro = this.$('md-switch');
 
   assert.equal($text.length, 2, 'two text inputs');
   assert.equal($numbers.length, 3, 'three number inputs');
-  assert.equal($nitro.length, 1, 'nitro');
 });
 
 // TODO form validation

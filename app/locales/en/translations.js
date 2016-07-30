@@ -31,6 +31,22 @@ export default {
       nitro: 'Nitro',
       cancel: 'Cancel',
       save: 'Add Beer'
+    },
+    hubStatus: {
+      hub: {
+        none: 'No hub found',
+        add: 'Setup Hub'
+      },
+      taps: {
+        none: 'No taps found',
+        add: 'Add Tap'
+      }
+    },
+    addTap: {
+      name: 'Tap Name',
+      nitro: 'Nitro',
+      cancel: 'Cancel',
+      save: 'Add Tap'
     }
   },
 

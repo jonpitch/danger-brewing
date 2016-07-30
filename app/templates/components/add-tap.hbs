@@ -1,0 +1,26 @@
+{{! tap name }}
+<div class="layout-column layout-align-center-center">
+  {{paper-input
+    label=(t "components.addTap.name")
+    value=name
+    required=true
+    onChange=(action (mut name))
+    errors=validations.attrs.name.messages}}
+</div>
+
+{{! carbonation type }}
+<div class="layout-column layout-align-center-center">
+  {{#paper-switch value=nitro onChange=(action (mut nitro))}}
+    {{t "components.addTap.nitro"}}
+  {{/paper-switch}}
+</div>
+
+{{! save/cancel }}
+<div class="layout-column layout-align-center-center">
+  {{#paper-button onClick=(action "cancel")}}
+    {{t "components.addTap.cancel"}}
+  {{/paper-button}}
+  {{#paper-button raised=true primary=true onClick=(action "save")}}
+    {{t "components.addTap.save"}}
+  {{/paper-button}}
+</div>

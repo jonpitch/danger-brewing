@@ -11,6 +11,11 @@ Router.map(function() {
   this.route('beer', function() {
     this.route('add');
   });
+  this.route('status');
+
+  this.route('tap', function() {
+    this.route('add');
+  });
 });
 
 export default Router;

@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-// import { belongsTo, hasMany } from 'ember-data/relationships';
+import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('string'),
@@ -9,7 +9,6 @@ export default Model.extend({
   active: attr('boolean', { defaultValue: true }),
   tapped: attr('number'),
   kicked: attr('number'),
-  nitro: attr('boolean'),
-  ounces: attr('number')
-
+  ounces: attr('number'),
+  tap: belongsTo('tap')
 });

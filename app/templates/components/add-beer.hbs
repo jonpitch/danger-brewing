@@ -51,13 +51,6 @@
     errors=validations.attrs.ounces.messages}}
 </div>
 
-{{! nitro }}
-<div class="layout-column layout-align-center-center">
-  {{#paper-switch value=nitro onChange=(action (mut nitro))}}
-    {{t "components.addBeer.nitro"}}
-  {{/paper-switch}}
-</div>
-
 {{! save/cancel }}
 <div class="layout-column layout-align-center-center">
   {{#paper-button onClick=(action "cancel")}}

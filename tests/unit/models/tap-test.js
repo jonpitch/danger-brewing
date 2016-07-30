@@ -1,9 +1,10 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('beer', 'Unit | Model | beer', {
+moduleForModel('tap', 'Unit | Model | tap', {
   // Specify the other units that are required for this test.
   needs: [
-    'model:tap'
+    'model:hub',
+    'model:beer'
   ]
 });
 
