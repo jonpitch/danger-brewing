@@ -3,70 +3,55 @@ import {
   validator, buildValidations
 } from 'ember-cp-validations';
 
-const required = validator('presence', {
-  presence: true,
-  ignoreBlank: true
-});
-
 const Validations = buildValidations({
-  name: required,
-  style: required,
-  tapName: required,
-  abv: required
+  name: validator('presence', {
+    presence: true,
+    ignoreBlank: true
+  })
 });
 
 export default Ember.Component.extend(Validations, {
-  tagName: 'add-beer',
+  tagName: 'add-tap',
   store: Ember.inject.service(),
   isSaving: false,
 
   // model
   name: null,
-  style: null,
-  tapName: null,
-  abv: null,
-  ounces: null,
+  nitro: false,
 
   actions: {
 
-    // cancel adding beer
+    // cancel adding tap
     cancel() {
       this.setProperties({
         name: null,
-        style: null,
-        tapName: null,
-        ounces: null
+        nitro: false
       });
       this.sendAction('cancel');
     },
 
-    // save beer
+    // save tap
     save() {
       this.validate().then(({ m, validations }) => {
         const isValid = validations.get('isValid');
         if (isValid) {
           const {
             name,
-            style,
-            tapName,
-            abv,
-            ounces
+            nitro
           } = this;
 
-          const tap = this.get('taps').findBy('name', tapName);
-          const beer = this.get('store').createRecord('beer', {
+          // create tap and associate to hub
+          const hub = this.get('hub');
+          const tap = this.get('store').createRecord('tap', {
             name: name,
-            style: style,
-            tap: tap,
-            abv: abv,
-            ounces: ounces,
-            tapped: Date.now()
+            nitro: nitro,
+            hub: hub
           });
 
           this.set('isSaving', true);
-          tap.set('beer', beer);
-          beer.save().then(() => {
-            return tap.save().then(() => {
+          hub.get('taps').addObject(tap);
+          tap.save().then(() => {
+            return hub.save().then(() => {
               this.sendAction('save');
             });
           }).catch(() => {

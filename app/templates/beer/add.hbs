@@ -1,3 +1,8 @@
-{{add-beer
-  cancel='cancelAddBeer'
-  save='beerSaveSuccess'}}
+{{#if model}}
+  {{add-beer
+    taps=model
+    cancel='cancelAddBeer'
+    save='beerSaveSuccess'}}
+{{else}}
+  <p>{{link-to (t 'components.addBeer.noHub') 'status'}}</p>
+{{/if}}

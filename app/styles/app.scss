@@ -1,4 +1,12 @@
+// color overrides
+$primary: 'blue-grey';
+$accent: 'orange';
+$warn: 'red';
+
+
 @import 'ember-paper';
+@import 'global/dimens';
+@import 'global/forms';
 
 // TODO global styles
 body > .ember-view {
@@ -7,14 +15,17 @@ body > .ember-view {
   min-height: 100vh;
 }
 
-md-sidenav {
-  a {
-    text-decoration: none;
-  }
-  span.link {
-    cursor: pointer;
-  }
+div.application-container {
+  padding: $keyline-y $keyline-x;
+  background-color: color('grey', '100');
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-// component styles
 @import 'components/login-form';
+@import 'components/add-tap';
+@import 'components/add-beer';
+@import 'components/on-tap';
+@import 'components/sidenav';
+@import 'components/hub-status';

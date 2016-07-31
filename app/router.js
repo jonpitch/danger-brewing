@@ -7,9 +7,14 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
+  this.route('status');
 
-  this.route('beer', function() {
-    this.route('add');
+  this.authenticatedRoute('beer', function() {
+    this.authenticatedRoute('add');
+  });
+
+  this.authenticatedRoute('tap', function() {
+    this.authenticatedRoute('add');
   });
 });
 

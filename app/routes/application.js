@@ -1,5 +1,16 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Ember.Route.extend({
+  session: Ember.inject.service(),
+
+  beforeModel() {
+    return this.get('session').fetch().catch(() => { });
+  },
+
+  actions: {
+
+    accessDenied() {
+      this.transitionTo('index');
+    }
+  }
 });

@@ -9,34 +9,44 @@
   }}
     {{#paper-toolbar as |toolbar|}}
       {{#paper-toolbar-tools}}
-        {{t "app.name"}}
+        {{! TODO future logo? }}
       {{/paper-toolbar-tools}}
     {{/paper-toolbar}}
     {{#paper-content}}
       {{#paper-list}}
         {{! main }}
         {{#paper-item}}
-          {{link-to (t "app.navigation.onTap") 'index'}}
+          <span class="link" data-test="index">
+            {{link-to (t "app.navigation.onTap") 'index'}}
+          </span>
         {{/paper-item}}
         {{#paper-item}}
-          {{t "app.navigation.status"}}
+          <span class="link" data-test="status">
+            {{link-to (t "app.navigation.status") 'status'}}
+          </span>
         {{/paper-item}}
         {{#paper-item}}
-          {{t "app.navigation.history"}}
+          <span class="link" data-test="history">
+            {{t "app.navigation.history"}}
+          </span>
         {{/paper-item}}
         {{paper-divider}}
 
         {{! misc. }}
         {{#paper-item}}
-          {{t "app.navigation.about"}}
+          <span class="link" data-test="about">
+            {{t "app.navigation.about"}}
+          </span>
         {{/paper-item}}
         {{#paper-item}}
           {{#if session.isAuthenticated}}
-            <span {{action "logout"}} class="link">
+            <span class="link" {{action "logout"}} data-test="logout">
               {{t "app.navigation.logout"}}
             </span>
           {{else}}
-            {{link-to (t "app.navigation.login") 'login'}}
+            <span class="link" data-test="login">
+              {{link-to (t "app.navigation.login") 'login'}}
+            </span>
           {{/if}}
         {{/paper-item}}
       {{/paper-list}}
@@ -49,6 +59,7 @@
       {{! toolbar }}
       {{#paper-toolbar as |toolbar|}}
         {{#toolbar.tools}}
+          {{! TODO hide-gt-sm not working }}
           {{#paper-sidenav-toggle name="left" class="hide-gt-sm" as |toggleAction|}}
             {{#paper-button iconButton=true onClick=(action toggleAction)}}
               {{paper-icon "menu"}}
@@ -60,7 +71,9 @@
       {{/paper-toolbar}}
 
       {{! content }}
-      {{outlet}}
+      <div class="application-container">
+        {{outlet}}
+      </div>
 
     </div>
   {{/paper-card-content}}

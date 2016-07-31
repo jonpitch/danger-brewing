@@ -1,0 +1,8 @@
+{{#if model}}
+  {{add-tap
+    hub=model
+    cancel='cancelAddTap'
+    save='tapSaveSuccess'}}
+{{else}}
+  <p>{{link-to (t 'components.addTap.noHub') 'status'}}</p>
+{{/if}}

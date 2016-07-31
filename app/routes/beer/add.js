@@ -1,7 +1,11 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Ember.Route.extend({
+
+  // there must be a taps before adding a beer
+  model() {
+    return this.store.findAll('tap');
+  },
 
   actions: {
 

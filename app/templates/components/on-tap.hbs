@@ -6,18 +6,18 @@
   </div>
 {{/if}}
 
-<div>
-  {{#each beers as |beer|}}
-    {{! TODO beer card component }}
+{{#each beers as |beer|}}
+  <div data-test="beer">
     {{#paper-card as |card|}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
           {{#text.headline}}
-            {{beer.name}}
+            <span data-test="name">{{beer.name}}</span>
           {{/text.headline}}
           {{#text.subhead}}
-            {{beer.style}}
+            <span data-test="style">{{beer.style}} - {{beer.abv}}%</span>
           {{/text.subhead}}
+          {{! TODO - nitrogen }}
         {{/title.text}}
       {{/card.title}}
       {{#card.actions}}
@@ -29,7 +29,7 @@
         {{/if}}
       {{/card.actions}}
     {{/paper-card}}
-  {{else}}
-    <p data-test="empty">{{t "components.onTap.empty"}}</p>
-  {{/each}}
-</div>
+  </div>
+{{else}}
+  <p data-test="empty">{{t "components.onTap.empty"}}</p>
+{{/each}}

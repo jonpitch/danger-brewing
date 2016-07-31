@@ -1,0 +1,9 @@
+@mixin default-card-form-style() {
+  md-card {
+    padding: $keyline-y;
+  }
+
+  md-input-container {
+    width: 100%;
+  }
+}

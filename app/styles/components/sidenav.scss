@@ -1,0 +1,18 @@
+md-sidenav {
+  background-color: color($primary, '500');
+  md-content {
+    background-color: color($primary, '500') !important;
+    color: #fff !important;
+
+    span.link {
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+        &:visited {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
 
     // log out user
     logout() {
-      this.get('session').invalidate();
+      this.get('session').close();
     }
   }
 });

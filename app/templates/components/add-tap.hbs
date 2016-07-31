@@ -1,0 +1,40 @@
+{{#paper-card as |card|}}
+  {{#card.content class="layout-column layout-align-center"}}
+
+    {{! tap name }}
+    <div data-test="tap">
+      {{paper-input
+        label=(t "components.addTap.name")
+        value=name
+        required=true
+        onChange=(action (mut name))
+        errors=validations.attrs.name.messages}}
+    </div>
+
+    {{! NO2 or CO2 }}
+    <div data-test="carbonation">
+      {{#paper-switch value=nitro onChange=(action (mut nitro))}}
+        {{t "components.addTap.nitro"}}
+      {{/paper-switch}}
+    </div>
+
+  {{/card.content}}
+  {{#card.actions}}
+    <div data-test="cancel">
+      {{#paper-button onClick=(action "cancel")}}
+        {{t "components.addTap.cancel"}}
+      {{/paper-button}}
+    </div>
+    {{#if isSaving}}
+      <div data-test="loading">
+        {{paper-progress-circular}}
+      </div>
+    {{else}}
+      <div data-test="submit">
+        {{#paper-button raised=true primary=true onClick=(action "save")}}
+          {{t "components.addTap.save"}}
+        {{/paper-button}}
+      </div>
+    {{/if}}
+  {{/card.actions}}
+{{/paper-card}}

@@ -45,7 +45,7 @@ export default Ember.Component.extend(Validations, {
         const isValid = validations.get('isValid');
         if (isValid) {
           this.set('isLoggingIn', true);
-          this.get('session').authenticate('authenticator:firebase', {
+          this.get('session').open('firebase', {
             provider: 'password',
             email: email,
             password: password

@@ -9,6 +9,10 @@ export default {
       about: 'About',
       login: 'Log In',
       logout: 'Log Out'
+    },
+    units: {
+      fahrenheit: '&deg;F',
+      celsius: '&deg;C'
     }
   },
 
@@ -20,17 +24,47 @@ export default {
     },
     onTap: {
       add: 'Add Beer',
-      empty: 'there\'s nothing on tap at the moment.'
+      empty: 'there\'s nothing on tap at the moment.',
+      nitro: 'Nitrogen'
     },
     addBeer: {
       name: 'Beer Name',
       style: 'Beer Style',
       tap: 'Tap',
       abv: 'ABV',
-      oz: 'Ounces',
+      oz: 'Ounces (128 per gallon)',
       nitro: 'Nitro',
       cancel: 'Cancel',
-      save: 'Add Beer'
+      save: 'Add Beer',
+      noHub: 'Set up a hub first'
+    },
+    hubStatus: {
+      hub: {
+        none: 'No hub found',
+        add: 'Setup Hub',
+        offline: 'Hub is offline',
+        online: 'Hub is online',
+        title: 'Current Status',
+        lastActive: 'Last Active:',
+        weather: 'Weather',
+        low: 'Lower',
+        up: 'Upper',
+        humidity: 'Humidity'
+      },
+      taps: {
+        none: 'No taps found',
+        add: 'Add Tap',
+        pouring: 'Pouring:',
+        notPouring: 'Empty',
+        nitro: 'Nitrogen'
+      }
+    },
+    addTap: {
+      name: 'Tap Name',
+      nitro: 'Nitro',
+      cancel: 'Cancel',
+      save: 'Add Tap',
+      noHub: 'Set up a hub first'
     }
   },
 

@@ -1,29 +1,40 @@
-<div class="layout-column layout-align-center-center">
-  {{paper-input
-    label=(t "components.login.email")
-    type="email"
-    value=email
-    required=true
-    onChange=(action (mut email))
-    errors=validations.attrs.email.messages}}
-</div>
-<div class="layout-column layout-align-center-center">
-  {{paper-input
-    label=(t "components.login.password")
-    type="password"
-    value=password
-    required=true
-    onChange=(action (mut password))
-    errors=validations.attrs.password.messages}}
-</div>
+{{#paper-card as |card|}}
+  {{#card.content class="layout-column layout-align-center"}}
 
-<div class="layout-column layout-align-center-center">
-  {{#if isLoggingIn}}
-    {{! TODO paper-progress broken in ember-paper }}
-    {{t "app.ipsum"}}
-  {{else}}
-    {{#paper-button raised=true primary=true onClick=(action "login")}}
-      {{t "components.login.action"}}
-    {{/paper-button}}
-  {{/if}}
-</div>
+    {{! email }}
+    <div data-test="email">
+      {{paper-input
+        label=(t "components.login.email")
+        type="email"
+        value=email
+        required=true
+        onChange=(action (mut email))
+        errors=validations.attrs.email.messages}}
+    </div>
+
+    {{! password }}
+    <div data-test="password">
+      {{paper-input
+        label=(t "components.login.password")
+        type="password"
+        value=password
+        required=true
+        onChange=(action (mut password))
+        errors=validations.attrs.password.messages}}
+    </div>
+
+  {{/card.content}}
+  {{#card.actions}}
+    {{#if isLoggingIn}}
+      <div data-test="loading">
+        {{paper-progress-circular}}
+      </div>
+    {{else}}
+      <div data-test="submit">
+        {{#paper-button raised=true primary=true onClick=(action "login")}}
+          {{t "components.login.action"}}
+        {{/paper-button}}
+      </div>
+    {{/if}}
+  {{/card.actions}}
+{{/paper-card}}
