@@ -1,4 +1,6 @@
 @import 'ember-paper';
+@import 'global/dimens';
+@import 'global/forms';
 
 // TODO global styles
 body > .ember-view {
@@ -7,14 +9,10 @@ body > .ember-view {
   min-height: 100vh;
 }
 
-md-sidenav {
-  a {
-    text-decoration: none;
-  }
-  span.link {
-    cursor: pointer;
-  }
+div.application-container {
+  padding: $keyline-y $keyline-x;
 }
 
-// component styles
 @import 'components/login-form';
+@import 'components/add-tap';
+@import 'components/add-beer';

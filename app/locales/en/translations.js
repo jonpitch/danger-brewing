@@ -27,7 +27,7 @@ export default {
       style: 'Beer Style',
       tap: 'Tap',
       abv: 'ABV',
-      oz: 'Ounces',
+      oz: 'Ounces (128 per gallon)',
       nitro: 'Nitro',
       cancel: 'Cancel',
       save: 'Add Beer',
