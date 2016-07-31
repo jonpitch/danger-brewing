@@ -20,13 +20,17 @@
 
 {{! tap }}
 <div class="layout-column layout-align-center-center">
-  {{paper-input
-    label=(t "components.addBeer.tap")
-    type="number"
-    value=tap
-    required=true
-    onChange=(action (mut tap))
-    errors=validations.attrs.tap.messages}}
+  {{#paper-select
+    placeholder="Tap"
+    value=tapName
+    onChange=(action (mut tapName))
+  }}
+    {{#each taps as |tap|}}
+      {{#paper-option value=tap.name}}
+        {{tap.name}}
+      {{/paper-option}}
+    {{/each}}
+  {{/paper-select}}
 </div>
 
 {{! abv }}

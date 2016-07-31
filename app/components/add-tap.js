@@ -41,8 +41,7 @@ export default Ember.Component.extend(Validations, {
           } = this;
 
           // create tap and associate to hub
-          // TODO pass in hub or look up
-          let hub = this.get('store').peekRecord('hub', '-KNxguowdJPuFnT19NFJ');
+          const hub = this.get('hub');
           const tap = this.get('store').createRecord('tap', {
             name: name,
             nitro: nitro,

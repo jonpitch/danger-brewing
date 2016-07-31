@@ -30,7 +30,8 @@ export default {
       oz: 'Ounces',
       nitro: 'Nitro',
       cancel: 'Cancel',
-      save: 'Add Beer'
+      save: 'Add Beer',
+      noHub: 'Set up a hub first'
     },
     hubStatus: {
       hub: {
@@ -46,7 +47,8 @@ export default {
       name: 'Tap Name',
       nitro: 'Nitro',
       cancel: 'Cancel',
-      save: 'Add Tap'
+      save: 'Add Tap',
+      noHub: 'Set up a hub first'
     }
   },
 

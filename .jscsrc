@@ -8,5 +8,6 @@
   "requireObjectDestructuring": null,
   "disallowConstOutsideModuleScope": null,
   "disallowDirectPropertyAccess": null,
-  "requireConstForEmberProperties": null
+  "requireConstForEmberProperties": null,
+  "requireCommentsToIncludeAccess": null
 }

@@ -8,6 +8,9 @@
           {{#title.text as |text|}}
             {{#text.headline}}Hub{{/text.headline}}
             {{#text.subhead}}{{hub.status}}{{/text.subhead}}
+            {{#if session.isAuthenticated}}
+              {{#text.subhead}}{{hub.id}}{{/text.subhead}}
+            {{/if}}
             {{#text.subhead}}Last Activity: {{hub.lastActivity}}{{/text.subhead}}
           {{/title.text}}
         {{/card.title}}
@@ -45,14 +48,20 @@
         {{#paper-card as |card|}}
           {{#card.title as |title|}}
             {{#title.text as |text|}}
-              {{#text.headline}}{{tap.id}}{{/text.headline}}
+              {{#text.headline}}{{tap.name}}{{/text.headline}}
+              {{#if session.isAuthenticated}}
+                {{#text.subhead}}{{tap.id}}{{/text.subhead}}
+              {{/if}}
               {{#text.subhead}}Nitro: {{tap.nitro}}{{/text.subhead}}
             {{/title.text}}
           {{/card.title}}
-          {{#card.actions}}
-            {{#paper-button iconButton=true}}{{paper-icon "delete"}}{{/paper-button}}
-            {{#paper-button iconButton=true}}{{paper-icon "edit"}}{{/paper-button}}
-          {{/card.actions}}
+          {{#if session.isAuthenticated}}
+            {{#card.actions}}
+              {{#paper-button iconButton=true onClick=(action "deleteTap" tap)}}
+                {{paper-icon "delete"}}
+              {{/paper-button}}
+            {{/card.actions}}
+          {{/if}}
         {{/paper-card}}
       </div>
     {{else}}

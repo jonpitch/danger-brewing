@@ -18,6 +18,10 @@ export default Ember.Route.extend({
     // redirect to add tap
     addTapRedirect() {
       this.transitionTo('tap.add');
+    },
+
+    editTapRedirect(tap) {
+      this.transitionTo('tap.edit', tap);
     }
   }
 });

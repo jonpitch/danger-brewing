@@ -11,7 +11,7 @@ const required = validator('presence', {
 const Validations = buildValidations({
   name: required,
   style: required,
-  tap: required,
+  tapName: required,
   abv: required
 });
 
@@ -23,7 +23,7 @@ export default Ember.Component.extend(Validations, {
   // model
   name: null,
   style: null,
-  tap: null,
+  tapName: null,
   abv: null,
   ounces: null,
 
@@ -34,7 +34,7 @@ export default Ember.Component.extend(Validations, {
       this.setProperties({
         name: null,
         style: null,
-        tap: null,
+        tapName: null,
         ounces: null
       });
       this.sendAction('cancel');
@@ -48,11 +48,12 @@ export default Ember.Component.extend(Validations, {
           const {
             name,
             style,
-            tap,
+            tapName,
             abv,
             ounces
           } = this;
 
+          const tap = this.get('taps').findBy('name', tapName);
           const beer = this.get('store').createRecord('beer', {
             name: name,
             style: style,
@@ -63,8 +64,11 @@ export default Ember.Component.extend(Validations, {
           });
 
           this.set('isSaving', true);
+          tap.set('beer', beer);
           beer.save().then(() => {
-            this.sendAction('save');
+            return tap.save().then(() => {
+              this.sendAction('save');
+            });
           }).catch(() => {
             // TODO notify error
           }).finally(() => {

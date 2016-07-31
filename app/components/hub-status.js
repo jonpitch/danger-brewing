@@ -23,6 +23,14 @@ export default Ember.Component.extend({
     // redirect user to add-tap
     addTapRedirect() {
       this.sendAction('addTap');
+    },
+
+    // remove tap
+    deleteTap(tap) {
+      tap.destroyRecord().catch(() => {
+        // TODO notification
+        console.log('unable to delete tap');
+      });
     }
   }
 });
