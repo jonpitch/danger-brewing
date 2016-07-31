@@ -31,6 +31,11 @@ module.exports = function(environment) {
       storageBucket: process.env.FIREBASE_STORAGE
     },
 
+    // torii
+    torii: {
+      sessionServiceName: 'session'
+    },
+
     // ember-i18n
     i18n: {
       defaultLocale: 'en'
