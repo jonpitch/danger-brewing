@@ -7,8 +7,13 @@ moduleForModel('hub', 'Unit | Model | hub', {
   ]
 });
 
-test('it exists', function(assert) {
-  let model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
+test('is online', function(assert) {
+  let model = this.subject({
+    status: 'online'
+  });
+
+  assert.ok(model.get('isOnline'), 'online status shows hub online');
+
+  model.set('status', 'offline');
+  assert.notOk(model.get('isOnline'), 'offline status shows not online');
 });

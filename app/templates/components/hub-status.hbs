@@ -3,32 +3,59 @@
   <div class="layout-row layout-xs-column">
     {{! hub status }}
     <div class="layout-column flex-xs flex-gt-xs-50">
-      {{#paper-card as |card|}}
-        {{#card.title as |title|}}
-          {{#title.text as |text|}}
-            {{#text.headline}}Hub{{/text.headline}}
-            {{#text.subhead}}{{hub.status}}{{/text.subhead}}
-            {{#if session.isAuthenticated}}
-              {{#text.subhead}}{{hub.id}}{{/text.subhead}}
-            {{/if}}
-            {{#text.subhead}}Last Activity: {{hub.lastActivity}}{{/text.subhead}}
-          {{/title.text}}
-        {{/card.title}}
-      {{/paper-card}}
+      <div data-test="status">
+        {{#paper-card as |card|}}
+          {{#card.title as |title|}}
+            {{#title.text as |text|}}
+              {{#text.headline}}
+                {{t "components.hubStatus.hub.title"}}
+              {{/text.headline}}
+              {{#if session.isAuthenticated}}
+                {{#text.subhead}}{{hub.id}}{{/text.subhead}}
+              {{/if}}
+              {{! TODO fuzzy time }}
+              <!-- {{#text.subhead}}
+                {{t "components.hubStatus.hub.lastActive"}}: {{hub.lastActivity}}
+              {{/text.subhead}} -->
+              {{#text.subhead}}
+                {{#if hub.isOnline}}
+                  {{paper-icon "thumb-up"}} <italic>{{t "components.hubStatus.hub.online"}}</italic>
+                {{else}}
+                  {{paper-icon "error"}} <italic>{{t "components.hubStatus.hub.offline"}}</italic>
+                {{/if}}
+              {{/text.subhead}}
+            {{/title.text}}
+          {{/card.title}}
+        {{/paper-card}}
+      </div>
     </div>
 
     {{! temperature }}
     <div class="layout-column flex-xs flex-gt-xs-50">
-      {{#paper-card as |card|}}
-        {{#card.title as |title|}}
-          {{#title.text as |text|}}
-            {{#text.headline}}Weather{{/text.headline}}
-            {{#text.subhead}}Lower Temperature: {{hub.lowerTemp}}{{/text.subhead}}
-            {{#text.subhead}}Upper Temperature: {{hub.upperTemp}}{{/text.subhead}}
-            {{#text.subhead}}Humidity: {{hub.humidity}}{{/text.subhead}}
-          {{/title.text}}
-        {{/card.title}}
-      {{/paper-card}}
+      <div data-test="weather">
+        {{#paper-card as |card|}}
+          {{#card.title as |title|}}
+            {{#title.text as |text|}}
+              {{#text.headline}}{{t "components.hubStatus.hub.weather"}}{{/text.headline}}
+              <div class="layout-row layout-xs-column">
+                {{! TODO when null temps - display "--"}}
+                <div class="layout-column flex-xs flex-gt-xs-50">
+                  <h2>{{hub.lowerTemp}}&deg;F</h2>
+                  <small>{{t "components.hubStatus.hub.low"}}</small>
+                </div>
+                <div class="layout-column flex-xs flex-gt-xs-50">
+                  <h2>{{hub.upperTemp}}&deg;F</h2>
+                  <small>{{t "components.hubStatus.hub.up"}}</small>
+                </div>
+                <div class="layout-column flex-xs flex-gt-xs-50">
+                  <h2>{{hub.humidity}}%</h2>
+                  <small>{{t "components.hubStatus.hub.humidity"}}</small>
+                </div>
+              </div>
+            {{/title.text}}
+          {{/card.title}}
+        {{/paper-card}}
+      </div>
     </div>
   </div>
 
@@ -45,31 +72,39 @@
   <div class="layout-row layout-xs-column">
     {{#each hub.taps as |tap|}}
       <div class="layout-column flex-xs flex-gt-xs-50">
-        {{#paper-card as |card|}}
-          {{#card.title as |title|}}
-            {{#title.text as |text|}}
-              {{#text.headline}}{{tap.name}}{{/text.headline}}
-              {{#if session.isAuthenticated}}
-                {{#text.subhead}}{{tap.id}}{{/text.subhead}}
-              {{/if}}
-              {{#text.subhead}}Nitro: {{tap.nitro}}{{/text.subhead}}
-              {{#text.subhead}}
-                {{#if tap.beer}}
-                  Currently Pouring: {{tap.beer.name}}
-                {{else}}
-                  Empty
+        <div data-test="tap">
+          {{#paper-card as |card|}}
+            {{#card.title as |title|}}
+              {{#title.text as |text|}}
+                {{#text.headline}}{{tap.name}}{{/text.headline}}
+                {{#if session.isAuthenticated}}
+                  {{#text.subhead}}
+                    {{tap.id}}
+                  {{/text.subhead}}
                 {{/if}}
-              {{/text.subhead}}
-            {{/title.text}}
-          {{/card.title}}
-          {{#if session.isAuthenticated}}
-            {{#card.actions}}
-              {{#paper-button iconButton=true onClick=(action "deleteTap" tap)}}
-                {{paper-icon "delete"}}
-              {{/paper-button}}
-            {{/card.actions}}
-          {{/if}}
-        {{/paper-card}}
+                {{#text.subhead}}
+                  {{#if tap.beer}}
+                    {{t "components.hubStatus.taps.pouring"}}: {{tap.beer.name}}
+                  {{else}}
+                    {{t "components.hubStatus.taps.notPouring"}}
+                  {{/if}}
+                {{/text.subhead}}
+                {{#if tap.nitro}}
+                  {{#text.subhead}}
+                    {{paper-icon "stars"}} {{t "components.hubStatus.taps.nitro"}}
+                  {{/text.subhead}}
+                {{/if}}
+              {{/title.text}}
+            {{/card.title}}
+            {{#if session.isAuthenticated}}
+              {{#card.actions}}
+                {{#paper-button iconButton=true onClick=(action "deleteTap" tap)}}
+                  {{paper-icon "delete"}}
+                {{/paper-button}}
+              {{/card.actions}}
+            {{/if}}
+          {{/paper-card}}
+        </div>
       </div>
     {{else}}
       {{! no taps}}

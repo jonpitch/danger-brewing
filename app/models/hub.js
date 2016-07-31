@@ -8,5 +8,10 @@ export default Model.extend({
   lowerTemp: attr('number'),
   humidity: attr('number'),
   lastActivity: attr('date'),
-  taps: hasMany('tap', { async: true })
+  taps: hasMany('tap', { async: true }),
+
+  // is the hub online
+  isOnline: Ember.computed('status', function() {
+    return this.get('status') === 'online';
+  })
 });

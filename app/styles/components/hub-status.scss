@@ -1,0 +1,27 @@
+hub-status {
+
+  @mixin muted() {
+    color: color('grey', '500');
+  }
+
+  // status card
+  div[data-test="status"] {
+    span.md-subhead {
+      @include muted();
+    }
+  }
+
+  // weather card
+  div[data-test="weather"] {
+    small {
+      @include muted();
+    }
+  }
+
+  // tap card(s)
+  div[data-test="tap"] {
+    span.md-subhead {
+      @include muted();
+    }
+  }
+}

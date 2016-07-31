@@ -20,7 +20,8 @@ export default {
     },
     onTap: {
       add: 'Add Beer',
-      empty: 'there\'s nothing on tap at the moment.'
+      empty: 'there\'s nothing on tap at the moment.',
+      nitro: 'Nitrogen'
     },
     addBeer: {
       name: 'Beer Name',
@@ -36,11 +37,22 @@ export default {
     hubStatus: {
       hub: {
         none: 'No hub found',
-        add: 'Setup Hub'
+        add: 'Setup Hub',
+        offline: 'Hub is offline',
+        online: 'Hub is online',
+        title: 'Current Status',
+        lastActive: 'Last Active',
+        weather: 'Weather',
+        low: 'Lower',
+        up: 'Upper',
+        humidity: 'Humidity'
       },
       taps: {
         none: 'No taps found',
-        add: 'Add Tap'
+        add: 'Add Tap',
+        pouring: 'Pouring',
+        notPouring: 'Empty',
+        nitro: 'Nitrogen'
       }
     },
     addTap: {
