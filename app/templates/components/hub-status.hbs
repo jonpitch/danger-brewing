@@ -53,6 +53,13 @@
                 {{#text.subhead}}{{tap.id}}{{/text.subhead}}
               {{/if}}
               {{#text.subhead}}Nitro: {{tap.nitro}}{{/text.subhead}}
+              {{#text.subhead}}
+                {{#if tap.beer}}
+                  Currently Pouring: {{tap.beer.name}}
+                {{else}}
+                  Empty
+                {{/if}}
+              {{/text.subhead}}
             {{/title.text}}
           {{/card.title}}
           {{#if session.isAuthenticated}}
