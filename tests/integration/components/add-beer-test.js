@@ -15,7 +15,7 @@ test('it renders', function(assert) {
   const $numbers = this.$('input[type="number"]');
 
   assert.equal($text.length, 2, 'two text inputs');
-  assert.equal($numbers.length, 3, 'three number inputs');
+  assert.equal($numbers.length, 2, 'three number inputs');
 });
 
 // TODO form validation

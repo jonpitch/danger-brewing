@@ -9,6 +9,10 @@ export default {
       about: 'About',
       login: 'Log In',
       logout: 'Log Out'
+    },
+    units: {
+      fahrenheit: '&deg;F',
+      celsius: '&deg;C'
     }
   },
 
@@ -41,7 +45,7 @@ export default {
         offline: 'Hub is offline',
         online: 'Hub is online',
         title: 'Current Status',
-        lastActive: 'Last Active',
+        lastActive: 'Last Active:',
         weather: 'Weather',
         low: 'Lower',
         up: 'Upper',
@@ -50,7 +54,7 @@ export default {
       taps: {
         none: 'No taps found',
         add: 'Add Tap',
-        pouring: 'Pouring',
+        pouring: 'Pouring:',
         notPouring: 'Empty',
         nitro: 'Nitrogen'
       }

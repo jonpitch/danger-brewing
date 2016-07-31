@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('hub', 'Unit | Model | hub', {
@@ -8,12 +9,14 @@ moduleForModel('hub', 'Unit | Model | hub', {
 });
 
 test('is online', function(assert) {
-  let model = this.subject({
-    status: 'online'
+  Ember.run(() => {
+    let model = this.subject({
+      status: 'online'
+    });
+
+    assert.ok(model.get('isOnline'), 'online status shows hub online');
+
+    model.set('status', 'offline');
+    assert.notOk(model.get('isOnline'), 'offline status shows not online');
   });
-
-  assert.ok(model.get('isOnline'), 'online status shows hub online');
-
-  model.set('status', 'offline');
-  assert.notOk(model.get('isOnline'), 'offline status shows not online');
 });

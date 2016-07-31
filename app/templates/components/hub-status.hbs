@@ -13,10 +13,7 @@
               {{#if session.isAuthenticated}}
                 {{#text.subhead}}{{hub.id}}{{/text.subhead}}
               {{/if}}
-              {{! TODO fuzzy time }}
-              <!-- {{#text.subhead}}
-                {{t "components.hubStatus.hub.lastActive"}}: {{hub.lastActivity}}
-              {{/text.subhead}} -->
+              {{! TODO fuzzy time - last active }}
               {{#text.subhead}}
                 {{#if hub.isOnline}}
                   {{paper-icon "thumb-up"}} <italic>{{t "components.hubStatus.hub.online"}}</italic>
@@ -40,11 +37,11 @@
               <div class="layout-row layout-xs-column">
                 {{! TODO when null temps - display "--"}}
                 <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>{{hub.lowerTemp}}&deg;F</h2>
+                  <h2>{{hub.lowerTemp}}{{t "app.units.fahrenheit"}}</h2>
                   <small>{{t "components.hubStatus.hub.low"}}</small>
                 </div>
                 <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>{{hub.upperTemp}}&deg;F</h2>
+                  <h2>{{hub.upperTemp}}{{t "app.units.fahrenheit"}}</h2>
                   <small>{{t "components.hubStatus.hub.up"}}</small>
                 </div>
                 <div class="layout-column flex-xs flex-gt-xs-50">
@@ -84,7 +81,7 @@
                 {{/if}}
                 {{#text.subhead}}
                   {{#if tap.beer}}
-                    {{t "components.hubStatus.taps.pouring"}}: {{tap.beer.name}}
+                    {{t "components.hubStatus.taps.pouring"}} {{tap.beer.name}}
                   {{else}}
                     {{t "components.hubStatus.taps.notPouring"}}
                   {{/if}}
