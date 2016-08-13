@@ -15,7 +15,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com",
-      'frame-src': "'self' https://*.firebaseapp.com",
+      'frame-src': "'self' https://*.firebaseapp.com https://*.firebaseio.com",
       'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com",
       'font-src': "'self' http://fonts.gstatic.com",

@@ -58,7 +58,7 @@
 
   {{! add tap }}
   {{#if session.isAuthenticated}}
-    <div>
+    <div data-test="add-tap">
       {{#paper-button raised=true primary=true onClick=(action "addTapRedirect")}}
         {{t "components.hubStatus.taps.add"}}
       {{/paper-button}}
@@ -105,16 +105,18 @@
       </div>
     {{else}}
       {{! no taps}}
-      <p>{{t "components.hubStatus.taps.none"}}</p>
+      <p data-test="no-taps">{{t "components.hubStatus.taps.none"}}</p>
     {{/each}}
 
   </div>
 {{else}}
   {{! there is no hub setup - if authenticated let user initialize one }}
-  <p>{{t "components.hubStatus.hub.none"}}</p>
+  <p data-test="not-setup">{{t "components.hubStatus.hub.none"}}</p>
   {{#if session.isAuthenticated}}
-    {{#paper-button raised=true primary=true onClick=(action "setupHub")}}
-      {{t "components.hubStatus.hub.add"}}
-    {{/paper-button}}
+    <div data-test="add-hub">
+      {{#paper-button raised=true primary=true onClick=(action "setupHub")}}
+        {{t "components.hubStatus.hub.add"}}
+      {{/paper-button}}
+    </div>
   {{/if}}
 {{/if}}
