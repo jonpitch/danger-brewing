@@ -51,6 +51,7 @@ export default create({
 
     tap: {
       scope: 'div[data-test="tap"]',
+      isVisible: isVisible(),
       open: clickable('md-select'),
       label: {
         scope: 'label',

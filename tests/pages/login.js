@@ -4,7 +4,8 @@ import {
   isVisible,
   attribute,
   text,
-  fillable
+  fillable,
+  clickable
 } from 'ember-cli-page-object';
 
 const url = '/login';
@@ -37,6 +38,11 @@ export default create({
         scope: 'label',
         class: attribute('class'),
         text: text()
+      },
+      input: {
+        scope: 'input[type="password"]',
+        fillIn: fillable(),
+        isVisible: isVisible()
       }
     },
 
@@ -44,6 +50,13 @@ export default create({
       scope: 'input[type="password"]',
       fillIn: fillable(),
       isVisible: isVisible()
+    },
+
+    isLoading: isVisible('div[data-test="loading"]'),
+    submit: {
+      scope: 'div[data-test="submit"] button',
+      isVisible: isVisible(),
+      click: clickable()
     }
   }
 });

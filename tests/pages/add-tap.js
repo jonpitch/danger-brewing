@@ -34,6 +34,7 @@ export default create({
 
     nitro: {
       scope: 'div[data-test="carbonation"]',
+      isVisible: isVisible(),
       label: {
         scope: 'div.md-label',
         text: text()

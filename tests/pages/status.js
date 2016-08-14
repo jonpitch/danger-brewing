@@ -32,13 +32,18 @@ export default create({
 
     status: {
       scope: 'div[data-test="status"]',
-      isVisible: isVisible()
+      isVisible: isVisible(),
+      isOnline: isVisible('italic[data-test="online"]'),
+      isOffline: isVisible('italic[data-test="offline"]')
     },
 
     // TODO revisit as "sensors"
     weather: {
       scope: 'div[data-test="weather"]',
-      isVisible: isVisible()
+      isVisible: isVisible(),
+      upperTemp: text('span[data-test="upper-temp"]'),
+      lowerTemp: text('span[data-test="lower-temp"]'),
+      humidity: text('h2[data-test="hub-humidity"]')
     },
 
     taps: collection({

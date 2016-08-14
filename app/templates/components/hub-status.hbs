@@ -16,9 +16,9 @@
               {{! TODO fuzzy time - last active }}
               {{#text.subhead}}
                 {{#if hub.isOnline}}
-                  {{paper-icon "thumb-up"}} <italic>{{t "components.hubStatus.hub.online"}}</italic>
+                  {{paper-icon "thumb-up"}} <italic data-test="online">{{t "components.hubStatus.hub.online"}}</italic>
                 {{else}}
-                  {{paper-icon "error"}} <italic>{{t "components.hubStatus.hub.offline"}}</italic>
+                  {{paper-icon "error"}} <italic data-test="offline">{{t "components.hubStatus.hub.offline"}}</italic>
                 {{/if}}
               {{/text.subhead}}
             {{/title.text}}
@@ -37,15 +37,19 @@
               <div class="layout-row layout-xs-column">
                 {{! TODO when null temps - display "--"}}
                 <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>{{hub.lowerTemp}}{{t "app.units.fahrenheit"}}</h2>
+                  <h2>
+                    <span data-test="lower-temp">{{hub.lowerTemp}}</span>{{t "app.units.fahrenheit"}}
+                  </h2>
                   <small>{{t "components.hubStatus.hub.low"}}</small>
                 </div>
                 <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>{{hub.upperTemp}}{{t "app.units.fahrenheit"}}</h2>
+                  <h2>
+                    <span data-test="upper-temp">{{hub.upperTemp}}</span>{{t "app.units.fahrenheit"}}
+                  </h2>
                   <small>{{t "components.hubStatus.hub.up"}}</small>
                 </div>
                 <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>{{hub.humidity}}%</h2>
+                  <h2 data-test="hub-humidity">{{hub.humidity}}%</h2>
                   <small>{{t "components.hubStatus.hub.humidity"}}</small>
                 </div>
               </div>
