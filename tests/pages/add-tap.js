@@ -16,6 +16,7 @@ export default create({
 
   form: {
     scope: 'add-tap',
+    isVisible: isVisible(),
 
     name: {
       scope: 'div[data-test="tap"]',

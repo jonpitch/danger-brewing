@@ -5,7 +5,6 @@ import {
   fillable,
   isVisible,
   text,
-  count,
   clickOnText,
   clickable
 } from 'ember-cli-page-object';
@@ -16,8 +15,11 @@ export default create({
   visit: visitable(url),
   url: url,
 
+  noHub: isVisible('p[data-test="no-hub"]'),
+
   form: {
     scope: 'add-beer',
+    isVisible: isVisible(),
 
     name: {
       scope: 'div[data-test="name"]',
@@ -49,15 +51,15 @@ export default create({
 
     tap: {
       scope: 'div[data-test="tap"]',
+      open: clickable('md-select'),
       label: {
         scope: 'label',
         class: attribute('class'),
         text: text()
       },
       select: {
-        resetScope: 'md-select-menu md-option',
-        select: clickOnText(),
-        count: count()
+        resetScope: 'md-select-menu > md-content',
+        choose: clickOnText('md-option div.md-text', { testContainer: 'body' })
       }
     },
 
@@ -69,7 +71,7 @@ export default create({
         text: text()
       },
       input: {
-        scope: 'input[type="text"]',
+        scope: 'input[type="number"]',
         fillIn: fillable(),
         isVisible: isVisible()
       }
@@ -83,7 +85,7 @@ export default create({
         text: text()
       },
       input: {
-        scope: 'input[type="text"]',
+        scope: 'input[type="number"]',
         fillIn: fillable(),
         isVisible: isVisible()
       }
