@@ -1,30 +1,18 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'danger-brewing/tests/helpers/module-for-acceptance';
-import startApp from '../helpers/start-app';
-import destroyApp from '../helpers/destroy-app';
-import replaceAppRef from '../helpers/replace-app-ref';
-import replaceFirebaseAppService from '../helpers/replace-firebase-app-service';
-import stubFirebase from '../helpers/stub-firebase';
-import unstubFirebase from '../helpers/unstub-firebase';
-import { emptyApplication } from '../helpers/create-test-ref';
+import startFirebaseApp from '../helpers/start-firebase-app';
+import destroyFirebaseApp from '../helpers/destroy-firebase-app';
 import page from 'danger-brewing/tests/pages/index';
+import { stubValidSession } from 'danger-brewing/tests/helpers/torii';
 
 let application;
 
 moduleForAcceptance('Acceptance | index', {
   beforeEach: function() {
-    stubFirebase();
-    application = startApp();
-
-    // TODO if there's already a session, replaceFirebaseAppService
-    // isn't mocking it correctly.
-
-    replaceFirebaseAppService(application, { });
-    replaceAppRef(application, emptyApplication());
+    application = startFirebaseApp();
   },
   afterEach: function() {
-    unstubFirebase();
-    destroyApp(application);
+    destroyFirebaseApp(application);
   }
 });
 
@@ -36,5 +24,17 @@ test('empty app - not authenticated', function(assert) {
     assert.ok(page.toolbar.menu.isVisible, 'see menu');
     assert.ok(page.onTap.isEmpty, 'nothing on tap');
     assert.notOk(page.onTap.addBeer.isVisible, 'cannot add beer');
+  });
+});
+
+test('empty app - authenticated', function(assert) {
+  stubValidSession(application, { });
+  visit('/');
+  andThen(function() {
+    assert.equal(currentURL(), page.url, 'on the correct page');
+    assert.ok(page.toolbar.isVisible, 'see the toolbar');
+    assert.ok(page.toolbar.menu.isVisible, 'see menu');
+    assert.ok(page.onTap.isEmpty, 'nothing on tap');
+    assert.ok(page.onTap.addBeer.isVisible, 'cannot add beer');
   });
 });
