@@ -6,7 +6,9 @@ import {
   isVisible,
   text,
   clickOnText,
-  clickable
+  clickable,
+  hasClass,
+  count
 } from 'ember-cli-page-object';
 
 const url = '/beer/add';
@@ -31,8 +33,10 @@ export default create({
       input: {
         scope: 'input[type="text"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     style: {
@@ -45,8 +49,10 @@ export default create({
       input: {
         scope: 'input[type="text"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     tap: {
@@ -74,8 +80,10 @@ export default create({
       input: {
         scope: 'input[type="number"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     ounces: {
@@ -88,8 +96,10 @@ export default create({
       input: {
         scope: 'input[type="number"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     actions: {

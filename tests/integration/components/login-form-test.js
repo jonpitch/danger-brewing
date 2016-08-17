@@ -21,8 +21,38 @@ test('it renders', function(assert) {
   assert.notOk(page.form.isLoading, 'form not "loading"');
 });
 
-// TODO
-test('validation', function(assert) {
+test('validation - all', function(assert) {
   page.render(hbs`{{login-form}}`);
-  assert.ok(true);
+  page.form.submit.click();
+  assert.ok(page.form.email.input.hasError, 'email has error state');
+  assert.equal(page.form.email.errors, 3, 'correct # of errors');
+  assert.ok(page.form.password.input.hasError, 'password has error state');
+  assert.equal(page.form.password.errors, 2, 'correct # of errors');
+});
+
+test('validation - email', function(assert) {
+  page.render(hbs`{{login-form}}`);
+  page.form.password.input.fillIn('somevalidpassword');
+  page.form.submit.click();
+  assert.ok(page.form.email.input.hasError, 'email has error state');
+  assert.equal(page.form.email.errors, 3, 'correct # of errors');
+  assert.notOk(page.form.password.input.hasError, 'password does not have error state');
+  assert.equal(page.form.password.errors, 0, 'correct # of errors');
+
+  page.form.email.input.fillIn('bad@email');
+  page.form.submit.click();
+  assert.ok(page.form.email.input.hasError, 'email has error state');
+  assert.equal(page.form.email.errors, 1, 'correct # of errors');
+  assert.notOk(page.form.password.input.hasError, 'password does not have error state');
+  assert.equal(page.form.password.errors, 0, 'correct # of errors');
+});
+
+test('validation - password', function(assert) {
+  page.render(hbs`{{login-form}}`);
+  page.form.email.input.fillIn('hugh.mann@internet.com');
+  page.form.submit.click();
+  assert.notOk(page.form.email.input.hasError, 'email has error state');
+  assert.equal(page.form.email.errors, 0, 'correct # of errors');
+  assert.ok(page.form.password.input.hasError, 'password has error state');
+  assert.equal(page.form.password.errors, 2, 'correct # of errors');
 });

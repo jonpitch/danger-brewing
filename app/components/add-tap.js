@@ -54,11 +54,14 @@ export default Ember.Component.extend(Validations, {
             return hub.save().then(() => {
               this.sendAction('save');
             });
-          }).catch(() => {
-            // TODO notify error
+          }).catch((reason) => {
+            // TODO notify error - ideally toast, not in ember-paper
+            console.log(reason);
           }).finally(() => {
             this.set('isSaving', false);
           });
+        } else {
+          this.$('#input-tap-name').blur();
         }
       });
     }

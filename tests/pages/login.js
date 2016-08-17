@@ -5,7 +5,9 @@ import {
   attribute,
   text,
   fillable,
-  clickable
+  clickable,
+  hasClass,
+  count
 } from 'ember-cli-page-object';
 
 const url = '/login';
@@ -28,8 +30,10 @@ export default create({
       input: {
         scope: 'input[type="email"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     password: {
@@ -42,8 +46,10 @@ export default create({
       input: {
         scope: 'input[type="password"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     login: {

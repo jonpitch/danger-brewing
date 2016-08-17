@@ -52,11 +52,18 @@ export default Ember.Component.extend(Validations, {
           }).then(() => {
             this.sendAction('redirect');
           }).catch((reason) => {
-            // TODO notification of error - waiting for toast in ember-paper
+            // TODO notification of error.
+            // ideally a toast, not currently available in ember-paper
             console.log(reason);
           }).finally(() => {
             this.set('isLoggingIn', false);
           });
+        } else {
+          // TODO toast
+
+          // is there a cleaner way to force ember-paper to show errors?
+          this.$('#input-admin-email').blur();
+          this.$('#input-admin-password').blur();
         }
       });
 

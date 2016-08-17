@@ -5,7 +5,9 @@ import {
   text,
   fillable,
   isVisible,
-  clickable
+  clickable,
+  hasClass,
+  count
 } from 'ember-cli-page-object';
 
 const url = '/tap/add';
@@ -28,8 +30,10 @@ export default create({
       input: {
         scope: 'input[type="text"]',
         fillIn: fillable(),
-        isVisible: isVisible()
-      }
+        isVisible: isVisible(),
+        hasError: hasClass('ng-invalid')
+      },
+      errors: count('div.paper-input-error')
     },
 
     nitro: {

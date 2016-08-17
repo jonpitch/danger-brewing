@@ -21,8 +21,9 @@ test('it renders', function(assert) {
   assert.ok(page.form.actions.add.isVisible, 'can save tap');
 });
 
-// TODO
 test('validation', function(assert) {
   page.render(hbs`{{add-tap}}`);
-  assert.ok(true);
+  page.form.actions.add.click();
+  assert.ok(page.form.name.input.hasError, 'name has error');
+  assert.equal(page.form.name.errors, 2, 'correct # of errors');
 });

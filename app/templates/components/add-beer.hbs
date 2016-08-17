@@ -4,6 +4,7 @@
     {{! name }}
     <div data-test="name">
       {{paper-input
+        id="beer-name"
         label=(t "components.addBeer.name")
         value=name
         required=true
@@ -14,6 +15,7 @@
     {{! style }}
     <div data-test="style">
       {{paper-input
+        id="beer-style"
         label=(t "components.addBeer.style")
         value=style
         required=true
@@ -24,6 +26,7 @@
     {{! tap }}
     <div data-test="tap">
       {{#paper-select
+        id="beer-tap"
         placeholder="Tap"
         value=tapName
         onChange=(action (mut tapName))
@@ -39,6 +42,7 @@
     {{! abv }}
     <div data-test="abv">
       {{paper-input
+        id="beer-abv"
         label=(t "components.addBeer.abv")
         type="number"
         value=abv
@@ -50,6 +54,7 @@
     {{! ounces }}
     <div data-test="ounces">
       {{paper-input
+        id="beer-ounces"
         label=(t "components.addBeer.oz")
         type="number"
         value=ounces
