@@ -1,12 +1,88 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import page from 'danger-brewing/tests/pages/status';
+
+let store;
 
 moduleForComponent('hub-status', 'Integration | Component | hub status', {
-  integration: true
+  integration: true,
+  beforeEach: function() {
+    page.setContext(this);
+    store = this.container.lookup('service:store');
+  },
+  afterEach: function() {
+    page.removeContext();
+  }
 });
 
-// TODO
-test('it renders', function(assert) {
-  this.render(hbs`{{hub-status}}`);
-  assert.ok(true);
+test('no model to render', function(assert) {
+  page.render(hbs`{{hub-status}}`);
+  assert.ok(page.hub.isVisible, 'see hub component');
+  assert.ok(page.hub.notSetup, 'see that hub is not setup');
+  assert.notOk(page.hub.status.isVisible, 'no status to report');
+  assert.notOk(page.hub.weather.isVisible, 'no weather to report');
+});
+
+test('it renders hub model', function(assert) {
+  Ember.run(() => {
+    const lower = 20;
+    const upper = 22;
+    const humidity = 50;
+    const model = store.createRecord('hub', {
+      status: 'offline',
+      upperTemp: upper,
+      lowerTemp: lower,
+      humidity: humidity
+    });
+
+    this.set('model', model);
+    page.render(hbs`{{hub-status hub=model}}`);
+    assert.ok(page.hub.isVisible, 'see hub status component');
+    assert.ok(page.hub.status.isOffline, 'see hub is offline');
+    assert.notOk(page.hub.notSetup, 'do not see the "not setup" message');
+    assert.ok(page.hub.status.isVisible, 'see status card');
+    assert.ok(page.hub.weather.isVisible, 'see weather card');
+    assert.equal(page.hub.weather.lowerTemp, lower, 'see correct lower temperature');
+    assert.equal(page.hub.weather.upperTemp, upper, 'see correct lower temperature');
+    assert.equal(page.hub.weather.humidity, `${humidity}%`, 'see correct humidity');
+  });
+});
+
+test('it renders with taps', function(assert) {
+  Ember.run(() => {
+    const lower = 20;
+    const upper = 22;
+    const humidity = 50;
+    const model = store.createRecord('hub', {
+      status: 'offline',
+      upperTemp: upper,
+      lowerTemp: lower,
+      humidity: humidity
+    });
+
+    const aTap = store.createRecord('tap', {
+      hub: model,
+      name: 'a-tap'
+    });
+    const bTap = store.createRecord('tap', {
+      hub: model,
+      name: 'b-tap'
+    });
+
+    model.set('taps', [aTap, bTap]);
+    this.set('model', model);
+    page.render(hbs`{{hub-status hub=model}}`);
+    assert.ok(page.hub.isVisible, 'see hub status component');
+    assert.ok(page.hub.status.isOffline, 'see hub is offline');
+    assert.notOk(page.hub.notSetup, 'do not see the "not setup" message');
+    assert.ok(page.hub.status.isVisible, 'see status card');
+    assert.ok(page.hub.weather.isVisible, 'see weather card');
+    assert.equal(page.hub.weather.lowerTemp, lower, 'see correct lower temperature');
+    assert.equal(page.hub.weather.upperTemp, upper, 'see correct lower temperature');
+    assert.equal(page.hub.weather.humidity, `${humidity}%`, 'see correct humidity');
+    assert.equal(page.hub.taps().count, 2, 'see each tap');
+    assert.equal(page.hub.taps(0).name, 'a-tap', 'correct name for a-tap');
+    assert.equal(page.hub.taps(1).name, 'b-tap', 'correct name for b-tap');
+  });
 });

@@ -24,7 +24,6 @@ You will need the following things properly installed on your computer.
 * Sign up for [Firebase](https://firebase.google.com/)
 * `cd` into this directory
   * `touch .env.dev`
-  * `touch .env.test`
   * `touch .env.production`
 * Update each file with `ENV` variables
   * `FIREBASE_API_KEY`: Firebase API Key

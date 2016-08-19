@@ -4,5 +4,5 @@
     cancel='cancelAddBeer'
     save='beerSaveSuccess'}}
 {{else}}
-  <p>{{link-to (t 'components.addBeer.noHub') 'status'}}</p>
+  <p data-test="no-hub">{{link-to (t 'components.addBeer.noHub') 'status'}}</p>
 {{/if}}

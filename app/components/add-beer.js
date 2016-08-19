@@ -69,11 +69,18 @@ export default Ember.Component.extend(Validations, {
             return tap.save().then(() => {
               this.sendAction('save');
             });
-          }).catch(() => {
-            // TODO notify error
+          }).catch((reason) => {
+            // TODO notify error, idealy toast, not in ember-paper
+            console.log(reason);
           }).finally(() => {
             this.set('isSaving', false);
           });
+        } else {
+          this.$('#input-beer-name').blur();
+          this.$('#input-beer-style').blur();
+          // tap
+          this.$('#input-beer-abv').blur();
+          this.$('#input-beer-ounces').blur();
         }
       });
     }

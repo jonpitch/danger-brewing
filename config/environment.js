@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'danger-brewing',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -14,8 +14,8 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com",
-      'frame-src': "'self' https://*.firebaseapp.com",
+      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com *.firebaseio.com",
+      'frame-src': "'self' https://*.firebaseapp.com https://*.firebaseio.com",
       'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com",
       'font-src': "'self' http://fonts.gstatic.com",
@@ -57,7 +57,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -65,6 +64,14 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    // mock firebase
+    ENV.firebase = {
+      apiKey: 'some-totally-made-up-key',
+      authDomain: 'this-is-fake.firebaseapp.com',
+      databaseURL: 'https://this-is-fake.firebaseio.com',
+      storageBucket: 'this-is-fake.appspot.com'
+    };
   }
 
   if (environment === 'production') {
