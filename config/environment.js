@@ -64,6 +64,14 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    // mock firebase
+    ENV.firebase = {
+      apiKey: 'some-totally-made-up-key',
+      authDomain: 'this-is-fake.firebaseapp.com',
+      databaseURL: 'https://this-is-fake.firebaseio.com',
+      storageBucket: 'this-is-fake.appspot.com'
+    };
   }
 
   if (environment === 'production') {
