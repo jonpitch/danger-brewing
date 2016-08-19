@@ -14,7 +14,7 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com",
+      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com *.firebaseio.com",
       'frame-src': "'self' https://*.firebaseapp.com https://*.firebaseio.com",
       'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com",
@@ -57,7 +57,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter

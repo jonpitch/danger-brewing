@@ -1,6 +1,6 @@
-import stubFirebase from '../helpers/stub-firebase';
-import startApp from '../helpers/start-app';
-import replaceAppRef from '../helpers/replace-app-ref';
+import stubFirebase from './stub-firebase';
+import startApp from './start-app';
+import replaceAppRef from './replace-app-ref';
 import createOfflineRef from './create-offline-ref';
 
 export default function startFirebaseApp(fixtures = { }) {
