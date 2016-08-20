@@ -36,6 +36,14 @@ export default Ember.Component.extend({
         // TODO notification
         console.log('unable to delete tap');
       });
+    },
+
+    // delete sensor
+    deleteSensor(sensor) {
+      sensor.destroyRecord().catch(() => {
+        // TODO notification
+        console.log('unable to delete sensor');
+      });
     }
   }
 });

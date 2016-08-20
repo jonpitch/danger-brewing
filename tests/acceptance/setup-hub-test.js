@@ -4,7 +4,10 @@ import startFirebaseApp from '../helpers/start-firebase-app';
 import destroyFirebaseApp from '../helpers/destroy-firebase-app';
 import page from 'danger-brewing/tests/pages/status';
 import { stubValidSession } from 'danger-brewing/tests/helpers/torii';
-import { stubHubOnlyFixture } from 'danger-brewing/tests/helpers/fixtures';
+import {
+  stubHubOnlyFixture,
+  stubApplicationFixture
+} from 'danger-brewing/tests/helpers/fixtures';
 
 let application;
 
@@ -90,3 +93,65 @@ test('hub already setup - authenticated', function(assert) {
     });
   });
 });
+
+test('delete tap - not authenticated', function(assert) {
+  setupData(stubApplicationFixture());
+  andThen(function() {
+    visit(page.url);
+    andThen(function() {
+      assert.equal(currentURL(), page.url, 'on the right page');
+      assert.equal(page.hub.taps().count, 3, 'see taps');
+      assert.notOk(page.hub.taps(0).hasDelete, 'cannot delete tap 1');
+      assert.notOk(page.hub.taps(1).hasDelete, 'cannot delete tap 2');
+      assert.notOk(page.hub.taps(2).hasDelete, 'cannot delete tap 3');
+    });
+  });
+});
+
+test('delete sensor - not authenticated', function(assert) {
+  setupData(stubApplicationFixture());
+  andThen(function() {
+    visit(page.url);
+    andThen(function() {
+      assert.equal(currentURL(), page.url, 'on the right page');
+      assert.equal(page.hub.sensors().count, 2, 'see sensors');
+      assert.notOk(page.hub.sensors(0).hasDelete, 'cannot delete tap 1');
+      assert.notOk(page.hub.sensors(1).hasDelete, 'cannot delete tap 2');
+    });
+  });
+});
+
+// TODO bug in ember-paper prevents this from testing properly
+// test('delete tap - authenticated', function(assert) {
+//   setupData(stubApplicationFixture());
+//   stubValidSession(application);
+//   andThen(function() {
+//     visit(page.url);
+//     andThen(function() {
+//       const taps = 3;
+//       assert.equal(currentURL(), page.url, 'on the right page');
+//       assert.equal(page.hub.taps().count, taps, 'see taps');
+//       page.hub.taps(0).delete();
+//       andThen(function() {
+//         assert.equal(page.hub.taps().count, taps - 1, 'see one less tap');
+//       });
+//     });
+//   });
+// });
+//
+// test('delete sensor - authenticated', function(assert) {
+//   setupData(stubApplicationFixture());
+//   stubValidSession(application);
+//   andThen(function() {
+//     visit(page.url);
+//     andThen(function() {
+//       const sensors = 2;
+//       assert.equal(currentURL(), page.url, 'on the right page');
+//       assert.equal(page.hub.sensors().count, sensors, 'see sensors');
+//       page.hub.sensors(0).delete();
+//       andThen(function() {
+//         assert.equal(page.hub.sensors().count, sensors - 1, 'see one less sensor');
+//       });
+//     });
+//   });
+// });

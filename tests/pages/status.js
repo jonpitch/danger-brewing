@@ -50,20 +50,24 @@ export default create({
     },
 
     taps: collection({
-      itemScope: 'div[data-test="tap"] div.md-list-item-text',
+      itemScope: 'div[data-test="tap"]',
       item: {
-        name: text('h3'),
-        type: text('h4'),
-        pouring: text('p')
+        name: text('div.md-list-item-text h3'),
+        type: text('div.md-list-item-text h4'),
+        pouring: text('div.md-list-item-text p'),
+        hasDelete: isVisible('span[data-test="delete-tap"]'),
+        delete: clickable('span[data-test="delete-tap"] button')
       }
     }),
 
     sensors: collection({
-      itemScope: 'div[data-test="sensor"] div.md-list-item-text',
+      itemScope: 'div[data-test="sensor"]',
       item: {
-        name: text('h3'),
-        type: text('h4'),
-        readout: text('p')
+        name: text('div.md-list-item-text h3'),
+        type: text('div.md-list-item-text h4'),
+        readout: text('div.md-list-item-text p'),
+        hasDelete: isVisible('span[data-test="delete-sensor"]'),
+        delete: clickable('span[data-test="delete-sensor"] button')
       }
     })
   }

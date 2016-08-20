@@ -88,6 +88,19 @@
                       {{/if}}
                     </p>
                   </div>
+
+                  {{! delete tap }}
+                  {{#if session.isAuthenticated}}
+                    <span data-test="delete-tap">
+                      {{#paper-button
+                        iconButton=true
+                        class="md-secondary"
+                        onClick=(action "deleteTap" tap)
+                      }}
+                        {{paper-icon "delete"}}
+                      {{/paper-button}}
+                    </span>
+                  {{/if}}
                 {{/paper-item}}
                 {{paper-divider}}
               {{/paper-list}}
@@ -135,6 +148,19 @@
                       {{/if}}
                     </p>
                   </div>
+
+                  {{! delete sensor }}
+                  {{#if session.isAuthenticated}}
+                    <span data-test="delete-sensor">
+                      {{#paper-button
+                        iconButton=true
+                        class="md-secondary"
+                        onClick=(action "deleteTap" sensor)
+                      }}
+                        {{paper-icon "delete"}}
+                      {{/paper-button}}
+                    </span>
+                  {{/if}}
                 {{/paper-item}}
                 {{paper-divider}}
               {{/paper-list}}
