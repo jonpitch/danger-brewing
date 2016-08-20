@@ -26,38 +26,6 @@
         {{/paper-card}}
       </div>
     </div>
-
-    {{! temperature }}
-    <div class="layout-column flex-xs flex-gt-xs-50">
-      <div data-test="weather">
-        {{#paper-card as |card|}}
-          {{#card.title as |title|}}
-            {{#title.text as |text|}}
-              {{#text.headline}}{{t "components.hubStatus.hub.weather"}}{{/text.headline}}
-              <div class="layout-row layout-xs-column">
-                {{! TODO when null temps - display "--"}}
-                <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>
-                    <span data-test="lower-temp">{{hub.lowerTemp}}</span>{{t "app.units.fahrenheit"}}
-                  </h2>
-                  <small>{{t "components.hubStatus.hub.low"}}</small>
-                </div>
-                <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>
-                    <span data-test="upper-temp">{{hub.upperTemp}}</span>{{t "app.units.fahrenheit"}}
-                  </h2>
-                  <small>{{t "components.hubStatus.hub.up"}}</small>
-                </div>
-                <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2 data-test="hub-humidity">{{hub.humidity}}%</h2>
-                  <small>{{t "components.hubStatus.hub.humidity"}}</small>
-                </div>
-              </div>
-            {{/title.text}}
-          {{/card.title}}
-        {{/paper-card}}
-      </div>
-    </div>
   </div>
 
   {{! add tap }}
@@ -111,6 +79,8 @@
       {{! no taps}}
       <p data-test="no-taps">{{t "components.hubStatus.taps.none"}}</p>
     {{/each}}
+
+    {{! TODO sensors }}
 
   </div>
 {{else}}

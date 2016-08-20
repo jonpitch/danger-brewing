@@ -42,15 +42,12 @@ test('setup hub', function(assert) {
       assert.equal(currentURL(), page.url, 'on the right page');
       assert.ok(page.hub.notSetup, 'no hub setup');
       assert.ok(page.hub.addHub.isVisible, 'can add a hub');
-      assert.notOk(page.hub.status.isVisible, 'no hub status');
-      assert.notOk(page.hub.weather.isVisible, 'no hub weather');
       assert.notOk(page.hub.addTap.isVisible, 'cannot add tap until hub setup');
       page.hub.addHub.click();
       andThen(function() {
         assert.notOk(page.hub.notSetup, 'see hub setup');
         assert.notOk(page.hub.addHub.isVisible, 'can no longer setup hub');
         assert.ok(page.hub.status.isVisible, 'see hub status');
-        assert.ok(page.hub.weather.isVisible, 'see hub weather');
         assert.ok(page.hub.addTap.isVisible, 'can now add taps');
       });
     });
@@ -66,7 +63,6 @@ test('hub already setup - not authenticated', function(assert) {
       assert.notOk(page.hub.notSetup, 'hub setup');
       assert.notOk(page.hub.addHub.isVisible, 'cannot add a hub');
       assert.ok(page.hub.status.isVisible, 'hub status visible');
-      assert.ok(page.hub.weather.isVisible, 'hub weather visible');
       assert.notOk(page.hub.addTap.isVisible, 'cannot add tap');
     });
   });
@@ -82,7 +78,6 @@ test('hub already setup - authenticated', function(assert) {
       assert.notOk(page.hub.notSetup, 'see hub setup');
       assert.notOk(page.hub.addHub.isVisible, 'can not setup hub');
       assert.ok(page.hub.status.isVisible, 'see hub status');
-      assert.ok(page.hub.weather.isVisible, 'see hub weather');
       assert.ok(page.hub.addTap.isVisible, 'can add taps');
       page.hub.addTap.click();
       andThen(function() {
