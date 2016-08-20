@@ -37,7 +37,7 @@ test('empty app - not authenticated', function(assert) {
 test('empty app - authenticated', function(assert) {
   setupData();
   andThen(function() {
-    stubValidSession(application, { });
+    stubValidSession(application);
     visit(page.url);
     andThen(function() {
       assert.equal(currentURL(), page.url, 'on the correct page');
@@ -62,6 +62,31 @@ test('up and running app - not authenticated', function(assert) {
         Object.keys(fixture.beers).length,
         'see some beers on tap'
       );
+      assert.notOk(page.onTap.beers(0).canDelete, 'cannot delete beers');
+    });
+  });
+});
+
+test('up and running app - authenticated - delete beer', function(assert) {
+  const fixture = stubApplicationFixture();
+  setupData(fixture);
+  stubValidSession(application);
+  andThen(function() {
+    visit(page.url);
+    andThen(function() {
+      const beers = Object.keys(fixture.beers).length;
+      assert.equal(currentURL(), page.url, 'on the correct page');
+      assert.ok(page.onTap.addBeer.isVisible, 'can add beer');
+      assert.equal(
+        page.onTap.beers().count,
+        beers,
+        'see some beers on tap'
+      );
+      assert.ok(page.onTap.beers(0).canDelete, 'can delete beer');
+      page.onTap.beers(0).delete();
+      andThen(function() {
+        assert.equal(page.onTap.beers().count, beers - 1, 'see one less beer');
+      });
     });
   });
 });

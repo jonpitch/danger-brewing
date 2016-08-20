@@ -45,11 +45,8 @@ export default create({
       item: {
         name: text('span[data-test="name"]'),
         style: text('span[data-test="style"]'),
-        delete: {
-          itemScope: 'md-card-actions button',
-          click: clickable(),
-          isVisible: isVisible()
-        }
+        canDelete: isVisible('md-card-actions button'),
+        delete: clickable('md-card-actions button')
       }
     })
   }
