@@ -1,0 +1,34 @@
+{{#paper-card as |card|}}
+  {{#card.content class="layout-column layout-align-center"}}
+
+    {{! tap name }}
+    <div data-test="sensor">
+      {{paper-input
+        id="sensor-name"
+        label=(t "components.addSensor.name")
+        value=name
+        required=true
+        onChange=(action (mut name))
+        errors=validations.attrs.name.messages}}
+    </div>
+
+  {{/card.content}}
+  {{#card.actions}}
+    <div data-test="cancel">
+      {{#paper-button onClick=(action "cancel")}}
+        {{t "components.addSensor.cancel"}}
+      {{/paper-button}}
+    </div>
+    {{#if isSaving}}
+      <div data-test="loading">
+        {{paper-progress-circular}}
+      </div>
+    {{else}}
+      <div data-test="submit">
+        {{#paper-button raised=true primary=true onClick=(action "save")}}
+          {{t "components.addSensor.save"}}
+        {{/paper-button}}
+      </div>
+    {{/if}}
+  {{/card.actions}}
+{{/paper-card}}

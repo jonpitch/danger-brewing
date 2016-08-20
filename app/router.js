@@ -17,6 +17,10 @@ Router.map(function() {
   this.authenticatedRoute('tap', function() {
     this.authenticatedRoute('add');
   });
+
+  this.route('sensor', function() {
+    this.route('add');
+  });
 });
 
 export default Router;

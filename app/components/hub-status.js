@@ -25,6 +25,11 @@ export default Ember.Component.extend({
       this.sendAction('addTap');
     },
 
+    // redirect user to add-sensor
+    addSensorRedirect() {
+      this.sendAction('addSensor');
+    },
+
     // remove tap
     deleteTap(tap) {
       tap.destroyRecord().catch(() => {

@@ -1,0 +1,8 @@
+{{#if model}}
+  {{add-sensor
+    hub=model
+    cancel='cancelAddSensor'
+    save='sensorSaveSuccess'}}
+{{else}}
+  <p>{{link-to (t 'components.addSensor.noHub') 'status'}}</p>
+{{/if}}

@@ -45,11 +45,7 @@ export default {
         offline: 'Hub is offline',
         online: 'Hub is online',
         title: 'Current Status',
-        lastActive: 'Last Active:',
-        weather: 'Weather',
-        low: 'Lower',
-        up: 'Upper',
-        humidity: 'Humidity'
+        lastActive: 'Last Active:'
       },
       taps: {
         none: 'No taps found',
@@ -57,6 +53,10 @@ export default {
         pouring: 'Pouring:',
         notPouring: 'Empty',
         nitro: 'Nitrogen'
+      },
+      sensors: {
+        none: 'No sensors found',
+        add: 'Add Sensor'
       }
     },
     addTap: {
@@ -64,6 +64,12 @@ export default {
       nitro: 'Nitro',
       cancel: 'Cancel',
       save: 'Add Tap',
+      noHub: 'Set up a hub first'
+    },
+    addSensor: {
+      name: 'Sensor Name',
+      cancel: 'Cancel',
+      save: 'Add Sensor',
       noHub: 'Set up a hub first'
     }
   },
