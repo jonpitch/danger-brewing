@@ -19,6 +19,9 @@ export default {
       medium: 'To find out more, read about it on medium.',
       developers: 'Developers, if you want to contribute:',
       github: 'Click Here'
+    },
+    history: {
+      placeholder: 'Coming soon, usage statistics...'
     }
   },
 

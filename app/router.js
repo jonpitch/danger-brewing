@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('login');
   this.route('status');
   this.route('about');
+  this.route('history');
 
   this.authenticatedRoute('beer', function() {
     this.authenticatedRoute('add');
