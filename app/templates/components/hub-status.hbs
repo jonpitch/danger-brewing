@@ -30,7 +30,7 @@
 
     {{! hub info }}
     <div class="layout-column flex-xs flex-gt-xs-50">
-      <div>
+      <div data-test="activity">
         {{#paper-card as |card|}}
           {{#card.title as |title|}}
             {{#title.text as |text|}}
@@ -38,7 +38,13 @@
                 {{t "components.hubStatus.hub.lastActive"}}
               {{/text.headline}}
               {{#text.subhead}}
-                {{hub.lastActivity}}
+                <span data-test="last">
+                  {{#if hub.lastActivity}}
+                    {{hub.lastActivity}}
+                  {{else}}
+                    {{t "components.hubStatus.hub.noActivity"}}
+                  {{/if}}
+                </span>
               {{/text.subhead}}
             {{/title.text}}
           {{/card.title}}

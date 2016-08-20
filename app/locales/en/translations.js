@@ -44,7 +44,8 @@ export default {
         add: 'Setup Hub',
         offline: 'Hub is offline',
         online: 'Hub is online',
-        lastActive: 'Last Activity'
+        lastActive: 'Last Activity',
+        noActivity: 'None'
       },
       taps: {
         none: 'No taps found',

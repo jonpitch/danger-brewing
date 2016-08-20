@@ -43,18 +43,27 @@ export default create({
       isOffline: isVisible('span[data-test="offline"]')
     },
 
+    activity: {
+      scope: 'div[data-test="activity"]',
+      isVisible: isVisible(),
+      date: text('span[data-test="last"]')
+    },
+
     taps: collection({
-      itemScope: 'div[data-test="tap"]',
+      itemScope: 'div[data-test="tap"] div.md-list-item-text',
       item: {
-        name: text('div.md-list-item-text h3'),
-        pouring: text('div.md-list-item-text p', { at: 0 })
+        name: text('h3'),
+        type: text('h4'),
+        pouring: text('p')
       }
     }),
 
     sensors: collection({
-      itemScope: 'div[data-test="sensor"]',
+      itemScope: 'div[data-test="sensor"] div.md-list-item-text',
       item: {
-        name: text('div.md-list-item-text h3')
+        name: text('h3'),
+        type: text('h4'),
+        readout: text('p')
       }
     })
   }
