@@ -7,6 +7,7 @@ export default Model.extend({
   status: attr('string'),
   lastActivity: attr('date'),
   taps: hasMany('tap', { async: true }),
+  sensors: hasMany('sensor', { async: true }),
 
   // is the hub online
   isOnline: Ember.computed('status', function() {
