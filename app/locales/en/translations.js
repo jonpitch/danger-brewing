@@ -44,19 +44,21 @@ export default {
         add: 'Setup Hub',
         offline: 'Hub is offline',
         online: 'Hub is online',
-        title: 'Current Status',
-        lastActive: 'Last Active:'
+        lastActive: 'Last Activity'
       },
       taps: {
         none: 'No taps found',
         add: 'Add Tap',
         pouring: 'Pouring:',
         notPouring: 'Empty',
-        nitro: 'Nitrogen'
+        nitro: 'Nitrogen',
+        co2: 'CO2'
       },
       sensors: {
         none: 'No sensors found',
-        add: 'Add Sensor'
+        add: 'Add Sensor',
+        noTemp: '&mdash;',
+        humidity: '&mdash; {{humidity}}%'
       }
     },
     addTap: {

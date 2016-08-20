@@ -1,26 +1,6 @@
 {{#if hub}}
   {{! status }}
   <div class="layout-row layout-xs-column">
-    {{! hub info }}
-    <div class="layout-column flex-xs flex-gt-xs-50">
-      <div>
-        {{#paper-card as |card|}}
-          {{#card.title as |title|}}
-            {{#title.text as |text|}}
-              {{#text.headline}}
-                {{t "app.ipsum"}}
-              {{/text.headline}}
-              {{#if session.isAuthenticated}}
-                {{#text.subhead}}{{hub.id}}{{/text.subhead}}
-              {{/if}}
-              {{#text.subhead}}
-                {{t "app.ipsum"}}
-              {{/text.subhead}}
-            {{/title.text}}
-          {{/card.title}}
-        {{/paper-card}}
-      </div>
-    </div>
 
     {{! hub status }}
     <div class="layout-column flex-xs flex-gt-xs-50">
@@ -29,7 +9,11 @@
           {{#card.title as |title|}}
             {{#title.text as |text|}}
               {{#text.headline}}
-                {{t "components.hubStatus.hub.title"}}
+                {{#if hub.isOnline}}
+                  <span data-test="online">{{t "components.hubStatus.hub.online"}}</span>
+                {{else}}
+                  <span data-test="offline">{{t "components.hubStatus.hub.offline"}}</span>
+                {{/if}}
               {{/text.headline}}
               {{#text.subhead}}
                 {{#if hub.isOnline}}
@@ -38,12 +22,23 @@
                   {{paper-icon "error" size=36}}
                 {{/if}}
               {{/text.subhead}}
+            {{/title.text}}
+          {{/card.title}}
+        {{/paper-card}}
+      </div>
+    </div>
+
+    {{! hub info }}
+    <div class="layout-column flex-xs flex-gt-xs-50">
+      <div>
+        {{#paper-card as |card|}}
+          {{#card.title as |title|}}
+            {{#title.text as |text|}}
+              {{#text.headline}}
+                {{t "components.hubStatus.hub.lastActive"}}
+              {{/text.headline}}
               {{#text.subhead}}
-                {{#if hub.isOnline}}
-                  <span data-test="online">{{t "components.hubStatus.hub.online"}}</span>
-                {{else}}
-                  <span data-test="offline">{{t "components.hubStatus.hub.offline"}}</span>
-                {{/if}}
+                {{hub.lastActivity}}
               {{/text.subhead}}
             {{/title.text}}
           {{/card.title}}
@@ -72,9 +67,13 @@
                   {{paper-icon "local-drink" size=36}}
                   <div class="md-list-item-text">
                     <h3>{{tap.name}}</h3>
-                    {{#if session.isAuthenticated}}
-                      <p>{{tap.id}}</p>
-                    {{/if}}
+                    <h4>
+                      {{#if tap.nitro}}
+                        {{t "components.hubStatus.taps.nitro"}}
+                      {{else}}
+                        {{t "components.hubStatus.taps.co2"}}
+                      {{/if}}
+                    </h4>
                     <p>
                       {{#if tap.beer}}
                         {{t "components.hubStatus.taps.pouring"}} {{tap.beer.name}}
@@ -112,11 +111,22 @@
                   {{paper-icon "ac-unit" size=36}}
                   <div class="md-list-item-text">
                     <h3>{{sensor.name}}</h3>
-                    {{#if session.isAuthenticated}}
-                      <p>{{sensor.id}}</p>
-                    {{/if}}
+                    <h4>{{sensor.type}}</h4>
                     <p>
-                      {{sensor.temperature}}
+                      <span data-test="temp">
+                        {{#if sensor.temperature}}
+                          <span data-test="temp-readout">
+                            {{sensor.temperature}}{{t "app.units.celsius"}}
+                          </span>
+                        {{else}}
+                          <span data-test="no-temp">{{t "components.hubStatus.sensors.noTemp"}}</span>
+                        {{/if}}
+                      </span>
+                      {{#if sesnsor.humidity}}
+                        <span data-test="humid">
+                          {{t "components.hubStatus.sensors.humidity" humidity=sensor.humidity}}
+                        </span>
+                      {{/if}}
                     </p>
                   </div>
                 {{/paper-item}}
