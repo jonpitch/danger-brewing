@@ -7,6 +7,12 @@ export default Ember.Route.extend({
     return this.store.query('beer', {
       orderBy: 'active',
       equalTo: true
+    }).then((beers) => {
+      beers.forEach((b) => {
+        b.get('pours');
+        b.get('tap');
+      });
+      return beers;
     });
   },
 
