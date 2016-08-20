@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('status');
+  this.route('about');
 
   this.authenticatedRoute('beer', function() {
     this.authenticatedRoute('add');
@@ -18,8 +19,8 @@ Router.map(function() {
     this.authenticatedRoute('add');
   });
 
-  this.route('sensor', function() {
-    this.route('add');
+  this.authenticatedRoute('sensor', function() {
+    this.authenticatedRoute('add');
   });
 });
 

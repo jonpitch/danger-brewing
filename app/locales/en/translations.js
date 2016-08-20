@@ -13,6 +13,12 @@ export default {
     units: {
       fahrenheit: '&deg;F',
       celsius: '&deg;C'
+    },
+    about: {
+      comingSoon: 'Coming Soon...',
+      medium: 'To find out more, read about it on medium.',
+      developers: 'Developers, if you want to contribute:',
+      github: 'Click Here'
     }
   },
 
