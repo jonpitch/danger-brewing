@@ -82,7 +82,7 @@
                     </h4>
                     <p>
                       {{#if tap.beer}}
-                        {{t "components.hubStatus.taps.pouring"}} {{tap.beer.name}}
+                        {{t "components.hubStatus.taps.pouring" beer=tap.beer.name}}
                       {{else}}
                         {{t "components.hubStatus.taps.notPouring"}}
                       {{/if}}
@@ -128,7 +128,7 @@
                           <span data-test="no-temp">{{t "components.hubStatus.sensors.noTemp"}}</span>
                         {{/if}}
                       </span>
-                      {{#if sesnsor.humidity}}
+                      {{#if sensor.humidity}}
                         <span data-test="humid">
                           {{t "components.hubStatus.sensors.humidity" humidity=sensor.humidity}}
                         </span>

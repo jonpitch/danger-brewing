@@ -56,7 +56,7 @@ export default {
       taps: {
         none: 'No taps found',
         add: 'Add Tap',
-        pouring: 'Pouring:',
+        pouring: 'Pouring: {{beer}}',
         notPouring: 'Empty',
         nitro: 'Nitrogen',
         co2: 'CO2'
