@@ -5,5 +5,5 @@ import { belongsTo } from 'ember-data/relationships';
 export default Model.extend({
   created: attr('date'),
   ounces: attr('number'),
-  beer: belongsTo('beer')
+  beer: belongsTo('beer', { async: true })
 });

@@ -77,16 +77,17 @@ export function stubApplicationFixture() {
     },
     hubs: {
       '-KO1EJBmskdNLOc1S-4c': {
-        humidity: 25,
         lastActivity: '07/31/2016',
-        lowerTemp: 50,
         status: 'offline',
         taps: {
           '-KO1HcADp0WuqEUnQdAb': true,
           '-KO1HdKr4VxkSg5p0OEU': true,
           '-KO1Z5HatLNiqByIxLfj': true
         },
-        upperTemp: 51
+        sensors: {
+          '-KPc6S2WqRmuhwWaJPvf': true,
+          '-JPc6S2WqRmuhwWaJPvf': true
+        }
       }
     },
     taps: {
@@ -106,6 +107,18 @@ export function stubApplicationFixture() {
         hub: '-KO1EJBmskdNLOc1S-4c',
         name: 'tap-nitro',
         nitro: false
+      }
+    },
+    sensors: {
+      '-KPc6S2WqRmuhwWaJPvf': {
+        hub: '-KO1EJBmskdNLOc1S-4c',
+        name: 'sensor-1',
+        type: 'temperature'
+      },
+      '-JPc6S2WqRmuhwWaJPvf': {
+        hub: '-KO1EJBmskdNLOc1S-4c',
+        name: 'sensor-2',
+        type: 'temperature'
       }
     }
   };

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  // fetch hub for reference
   model() {
     // only support one hub for now
     return new Ember.RSVP.Promise((resolve, reject) => {
@@ -15,14 +16,15 @@ export default Ember.Route.extend({
 
   actions: {
 
-    // redirect to add tap
-    addTapRedirect() {
-      this.transitionTo('tap.add');
+    // cancel adding tap
+    cancelAddSensor() {
+      this.transitionTo('status');
     },
 
-    // redirect to add sensor
-    addSensorRedirect() {
-      this.transitionTo('sensor.add');
+    // tap saved successfully
+    sensorSaveSuccess() {
+      this.transitionTo('status');
     }
   }
+
 });

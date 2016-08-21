@@ -1,6 +1,7 @@
 {{#if hub}}
   {{! status }}
   <div class="layout-row layout-xs-column">
+
     {{! hub status }}
     <div class="layout-column flex-xs flex-gt-xs-50">
       <div data-test="status">
@@ -8,17 +9,17 @@
           {{#card.title as |title|}}
             {{#title.text as |text|}}
               {{#text.headline}}
-                {{t "components.hubStatus.hub.title"}}
+                {{#if hub.isOnline}}
+                  <span data-test="online">{{t "components.hubStatus.hub.online"}}</span>
+                {{else}}
+                  <span data-test="offline">{{t "components.hubStatus.hub.offline"}}</span>
+                {{/if}}
               {{/text.headline}}
-              {{#if session.isAuthenticated}}
-                {{#text.subhead}}{{hub.id}}{{/text.subhead}}
-              {{/if}}
-              {{! TODO fuzzy time - last active }}
               {{#text.subhead}}
                 {{#if hub.isOnline}}
-                  {{paper-icon "thumb-up"}} <italic data-test="online">{{t "components.hubStatus.hub.online"}}</italic>
+                  {{paper-icon "thumb-up" size=36}}
                 {{else}}
-                  {{paper-icon "error"}} <italic data-test="offline">{{t "components.hubStatus.hub.offline"}}</italic>
+                  {{paper-icon "error" size=36}}
                 {{/if}}
               {{/text.subhead}}
             {{/title.text}}
@@ -27,32 +28,24 @@
       </div>
     </div>
 
-    {{! temperature }}
+    {{! hub info }}
     <div class="layout-column flex-xs flex-gt-xs-50">
-      <div data-test="weather">
+      <div data-test="activity">
         {{#paper-card as |card|}}
           {{#card.title as |title|}}
             {{#title.text as |text|}}
-              {{#text.headline}}{{t "components.hubStatus.hub.weather"}}{{/text.headline}}
-              <div class="layout-row layout-xs-column">
-                {{! TODO when null temps - display "--"}}
-                <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>
-                    <span data-test="lower-temp">{{hub.lowerTemp}}</span>{{t "app.units.fahrenheit"}}
-                  </h2>
-                  <small>{{t "components.hubStatus.hub.low"}}</small>
-                </div>
-                <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2>
-                    <span data-test="upper-temp">{{hub.upperTemp}}</span>{{t "app.units.fahrenheit"}}
-                  </h2>
-                  <small>{{t "components.hubStatus.hub.up"}}</small>
-                </div>
-                <div class="layout-column flex-xs flex-gt-xs-50">
-                  <h2 data-test="hub-humidity">{{hub.humidity}}%</h2>
-                  <small>{{t "components.hubStatus.hub.humidity"}}</small>
-                </div>
-              </div>
+              {{#text.headline}}
+                {{t "components.hubStatus.hub.lastActive"}}
+              {{/text.headline}}
+              {{#text.subhead}}
+                <span data-test="last">
+                  {{#if hub.lastActivity}}
+                    {{hub.lastActivity}}
+                  {{else}}
+                    {{t "components.hubStatus.hub.noActivity"}}
+                  {{/if}}
+                </span>
+              {{/text.subhead}}
             {{/title.text}}
           {{/card.title}}
         {{/paper-card}}
@@ -60,58 +53,124 @@
     </div>
   </div>
 
-  {{! add tap }}
-  {{#if session.isAuthenticated}}
-    <div data-test="add-tap">
-      {{#paper-button raised=true primary=true onClick=(action "addTapRedirect")}}
-        {{t "components.hubStatus.taps.add"}}
-      {{/paper-button}}
-    </div>
-  {{/if}}
-
-  {{! taps }}
   <div class="layout-row layout-xs-column">
-    {{#each hub.taps as |tap|}}
-      <div class="layout-column flex-xs flex-gt-xs-50">
-        <div data-test="tap">
-          {{#paper-card as |card|}}
-            {{#card.title as |title|}}
-              {{#title.text as |text|}}
-                {{#text.headline}}{{tap.name}}{{/text.headline}}
-                {{#if session.isAuthenticated}}
-                  {{#text.subhead}}
-                    {{tap.id}}
-                  {{/text.subhead}}
-                {{/if}}
-                {{#text.subhead}}
-                  {{#if tap.beer}}
-                    {{t "components.hubStatus.taps.pouring"}} {{tap.beer.name}}
-                  {{else}}
-                    {{t "components.hubStatus.taps.notPouring"}}
-                  {{/if}}
-                {{/text.subhead}}
-                {{#if tap.nitro}}
-                  {{#text.subhead}}
-                    {{paper-icon "stars"}} {{t "components.hubStatus.taps.nitro"}}
-                  {{/text.subhead}}
-                {{/if}}
-              {{/title.text}}
-            {{/card.title}}
-            {{#if session.isAuthenticated}}
-              {{#card.actions}}
-                {{#paper-button iconButton=true onClick=(action "deleteTap" tap)}}
-                  {{paper-icon "delete"}}
-                {{/paper-button}}
-              {{/card.actions}}
-            {{/if}}
-          {{/paper-card}}
-        </div>
-      </div>
-    {{else}}
-      {{! no taps}}
-      <p data-test="no-taps">{{t "components.hubStatus.taps.none"}}</p>
-    {{/each}}
 
+    {{! taps }}
+    <div class="layout-column flex-xs flex-gt-xs-50">
+      {{#if session.isAuthenticated}}
+        <div data-test="add-tap">
+          {{#paper-button raised=true primary=true onClick=(action "addTapRedirect")}}
+            {{t "components.hubStatus.taps.add"}}
+          {{/paper-button}}
+        </div>
+      {{/if}}
+      <div class="list-padding">
+        {{#each hub.taps as |tap|}}
+          <div data-test="tap">
+            {{#paper-content class="md-whiteframe-z1 list-demo"}}
+              {{#paper-list}}
+                {{#paper-item class="md-3-line"}}
+                  {{paper-icon "local-drink" size=36}}
+                  <div class="md-list-item-text">
+                    <h3>{{tap.name}}</h3>
+                    <h4>
+                      {{#if tap.nitro}}
+                        {{t "components.hubStatus.taps.nitro"}}
+                      {{else}}
+                        {{t "components.hubStatus.taps.co2"}}
+                      {{/if}}
+                    </h4>
+                    <p>
+                      {{#if tap.beer}}
+                        {{t "components.hubStatus.taps.pouring" beer=tap.beer.name}}
+                      {{else}}
+                        {{t "components.hubStatus.taps.notPouring"}}
+                      {{/if}}
+                    </p>
+                  </div>
+
+                  {{! delete tap }}
+                  {{#if session.isAuthenticated}}
+                    <span data-test="delete-tap">
+                      {{#paper-button
+                        iconButton=true
+                        class="md-secondary"
+                        onClick=(action "deleteTap" tap)
+                      }}
+                        {{paper-icon "delete"}}
+                      {{/paper-button}}
+                    </span>
+                  {{/if}}
+                {{/paper-item}}
+                {{paper-divider}}
+              {{/paper-list}}
+            {{/paper-content}}
+          </div>
+        {{else}}
+          <p data-test="no-taps">{{t "components.hubStatus.taps.none"}}</p>
+        {{/each}}
+      </div>
+    </div>
+
+    {{! sensors }}
+    <div class="layout-column flex-xs flex-gt-xs-50">
+      {{#if session.isAuthenticated}}
+        <div data-test="add-sensor">
+          {{#paper-button raised=true primary=true onClick=(action "addSensorRedirect")}}
+            {{t "components.hubStatus.sensors.add"}}
+          {{/paper-button}}
+        </div>
+      {{/if}}
+      <div class="list-padding">
+        {{#each hub.sensors as |sensor|}}
+          <div data-test="sensor">
+            {{#paper-content class="md-whiteframe-z1 list-demo"}}
+              {{#paper-list}}
+                {{#paper-item class="md-3-line"}}
+                  {{paper-icon "ac-unit" size=36}}
+                  <div class="md-list-item-text">
+                    <h3>{{sensor.name}}</h3>
+                    <h4>{{sensor.type}}</h4>
+                    <p>
+                      <span data-test="temp">
+                        {{#if sensor.temperature}}
+                          <span data-test="temp-readout">
+                            {{sensor.temperature}}{{t "app.units.celsius"}}
+                          </span>
+                        {{else}}
+                          <span data-test="no-temp">{{t "components.hubStatus.sensors.noTemp"}}</span>
+                        {{/if}}
+                      </span>
+                      {{#if sensor.humidity}}
+                        <span data-test="humid">
+                          {{t "components.hubStatus.sensors.humidity" humidity=sensor.humidity}}
+                        </span>
+                      {{/if}}
+                    </p>
+                  </div>
+
+                  {{! delete sensor }}
+                  {{#if session.isAuthenticated}}
+                    <span data-test="delete-sensor">
+                      {{#paper-button
+                        iconButton=true
+                        class="md-secondary"
+                        onClick=(action "deleteTap" sensor)
+                      }}
+                        {{paper-icon "delete"}}
+                      {{/paper-button}}
+                    </span>
+                  {{/if}}
+                {{/paper-item}}
+                {{paper-divider}}
+              {{/paper-list}}
+            {{/paper-content}}
+          </div>
+        {{else}}
+          <p data-test="no-sensors">{{t "components.hubStatus.sensors.none"}}</p>
+        {{/each}}
+      </div>
+    </div>
   </div>
 {{else}}
   {{! there is no hub setup - if authenticated let user initialize one }}

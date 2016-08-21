@@ -13,6 +13,15 @@ export default {
     units: {
       fahrenheit: '&deg;F',
       celsius: '&deg;C'
+    },
+    about: {
+      comingSoon: 'Coming Soon...',
+      medium: 'To find out more, read about it on medium.',
+      developers: 'Developers, if you want to contribute:',
+      github: 'Click Here'
+    },
+    history: {
+      placeholder: 'Coming soon, usage statistics...'
     }
   },
 
@@ -44,19 +53,22 @@ export default {
         add: 'Setup Hub',
         offline: 'Hub is offline',
         online: 'Hub is online',
-        title: 'Current Status',
-        lastActive: 'Last Active:',
-        weather: 'Weather',
-        low: 'Lower',
-        up: 'Upper',
-        humidity: 'Humidity'
+        lastActive: 'Last Activity',
+        noActivity: 'None'
       },
       taps: {
         none: 'No taps found',
         add: 'Add Tap',
-        pouring: 'Pouring:',
+        pouring: 'Pouring: {{beer}}',
         notPouring: 'Empty',
-        nitro: 'Nitrogen'
+        nitro: 'Nitrogen',
+        co2: 'CO2'
+      },
+      sensors: {
+        none: 'No sensors found',
+        add: 'Add Sensor',
+        noTemp: '&mdash;',
+        humidity: '&mdash; {{humidity}}%'
       }
     },
     addTap: {
@@ -64,6 +76,12 @@ export default {
       nitro: 'Nitro',
       cancel: 'Cancel',
       save: 'Add Tap',
+      noHub: 'Set up a hub first'
+    },
+    addSensor: {
+      name: 'Sensor Name',
+      cancel: 'Cancel',
+      save: 'Add Sensor',
       noHub: 'Set up a hub first'
     }
   },

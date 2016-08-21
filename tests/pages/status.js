@@ -30,27 +30,44 @@ export default create({
       click: clickable('button')
     },
 
+    addSensor: {
+      scope: 'div[data-test="add-sensor"]',
+      isVisible: isVisible(),
+      click: clickable('button')
+    },
+
     status: {
       scope: 'div[data-test="status"]',
       isVisible: isVisible(),
-      isOnline: isVisible('italic[data-test="online"]'),
-      isOffline: isVisible('italic[data-test="offline"]')
+      isOnline: isVisible('span[data-test="online"]'),
+      isOffline: isVisible('span[data-test="offline"]')
     },
 
-    // TODO revisit as "sensors"
-    weather: {
-      scope: 'div[data-test="weather"]',
+    activity: {
+      scope: 'div[data-test="activity"]',
       isVisible: isVisible(),
-      upperTemp: text('span[data-test="upper-temp"]'),
-      lowerTemp: text('span[data-test="lower-temp"]'),
-      humidity: text('h2[data-test="hub-humidity"]')
+      date: text('span[data-test="last"]')
     },
 
     taps: collection({
       itemScope: 'div[data-test="tap"]',
       item: {
-        name: text('md-card-title-text span', { at: 0 }),
-        pouring: text('md-card-title-text span', { at: 1 })
+        name: text('div.md-list-item-text h3'),
+        type: text('div.md-list-item-text h4'),
+        pouring: text('div.md-list-item-text p'),
+        hasDelete: isVisible('span[data-test="delete-tap"]'),
+        delete: clickable('span[data-test="delete-tap"] button')
+      }
+    }),
+
+    sensors: collection({
+      itemScope: 'div[data-test="sensor"]',
+      item: {
+        name: text('div.md-list-item-text h3'),
+        type: text('div.md-list-item-text h4'),
+        readout: text('div.md-list-item-text p'),
+        hasDelete: isVisible('span[data-test="delete-sensor"]'),
+        delete: clickable('span[data-test="delete-sensor"] button')
       }
     })
   }

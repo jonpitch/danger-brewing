@@ -2,9 +2,9 @@ import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('hub', 'Unit | Model | hub', {
-  // Specify the other units that are required for this test.
   needs: [
-    'model:tap'
+    'model:tap',
+    'model:sensor'
   ]
 });
 

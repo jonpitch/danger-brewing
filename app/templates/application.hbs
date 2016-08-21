@@ -27,7 +27,7 @@
         {{/paper-item}}
         {{#paper-item}}
           <span class="link" data-test="history">
-            {{t "app.navigation.history"}}
+            {{link-to (t "app.navigation.history") 'history'}}
           </span>
         {{/paper-item}}
         {{paper-divider}}
@@ -35,7 +35,7 @@
         {{! misc. }}
         {{#paper-item}}
           <span class="link" data-test="about">
-            {{t "app.navigation.about"}}
+            {{link-to (t "app.navigation.about") 'about'}}
           </span>
         {{/paper-item}}
         {{#paper-item}}
