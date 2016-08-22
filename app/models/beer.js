@@ -57,13 +57,15 @@ export default Model.extend({
   }),
 
   // the last poured date
-  lastPoured: Ember.computed('pours.@each.created', function() {
-    const pours = this.get('pours');
+  sortedPours: Ember.computed.sort('pours', 'pourSortDescending'),
+  pourSortDescending: ['created:desc'],
+
+  lastPoured: Ember.computed('sortedPours', function() {
+    const pours = this.get('sortedPours');
     if (Ember.isEmpty(pours) || pours.length === 0) {
       return null;
     }
 
-    const ordered = pours.sortBy('created').reverse();
-    return ordered.get('firstObject.created');
+    return pours.get('firstObject.created');
   })
 });
