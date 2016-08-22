@@ -63,7 +63,11 @@ export function stubApplicationFixture() {
         ounces: 150,
         style: 'Sour Stout',
         tap: '-KO1HdKr4VxkSg5p0OEU',
-        tapped: '1469992425095'
+        tapped: '1469992425095',
+        pours: {
+          '-JPc6S2WqRmuhwWaJPva': true,
+          '-JPc6S2WqRmuhwWaJPvb': true
+        }
       },
       '-KO1_pCVEvHhpYKi-Lah': {
         abv: 8.5,
@@ -72,7 +76,10 @@ export function stubApplicationFixture() {
         ounces: 128,
         style: 'Double IPA',
         tap: '-KO1Z5HatLNiqByIxLfj',
-        tapped: '1469996028792'
+        tapped: '1469996028792',
+        pours: {
+          '-JPc6S2WqRmuhwWaJPvc': true
+        }
       }
     },
     hubs: {
@@ -119,6 +126,20 @@ export function stubApplicationFixture() {
         hub: '-KO1EJBmskdNLOc1S-4c',
         name: 'sensor-2',
         type: 'temperature'
+      }
+    },
+    pours: {
+      '-JPc6S2WqRmuhwWaJPva': {
+        beer: '-KO1N4Ofi1IwSetMe9ta',
+        ounces: 8
+      },
+      '-JPc6S2WqRmuhwWaJPvb': {
+        beer: '-KO1N4Ofi1IwSetMe9ta',
+        ounces: 12
+      },
+      '-JPc6S2WqRmuhwWaJPvc': {
+        beer: '-KO1_pCVEvHhpYKi-Lah',
+        ounces: 12.4
       }
     }
   };

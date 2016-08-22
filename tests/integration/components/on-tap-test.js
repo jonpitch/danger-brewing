@@ -39,7 +39,9 @@ test('it renders with beers', function(assert) {
     assert.equal(page.onTap.beers().count, 2, 'correct # of beers');
     assert.equal(page.onTap.beers(0).name, 'A Beer', 'correct name for beer 1');
     assert.equal(page.onTap.beers(0).style, 'A Style', 'correct style for beer 1');
+    assert.ok(page.onTap.beers(0).progress, 'see beer 1 progress');
     assert.equal(page.onTap.beers(1).name, 'B Beer', 'correct name for beer 2');
     assert.equal(page.onTap.beers(1).style, 'B Style', 'correct style for beer 2');
+    assert.ok(page.onTap.beers(1).progress, 'see beer 2 progress');
   });
 });

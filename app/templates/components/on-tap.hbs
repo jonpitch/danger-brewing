@@ -28,6 +28,13 @@
           {{/paper-button}}
         {{/if}}
       {{/card.actions}}
+
+      {{! keg level - remaining }}
+      {{paper-progress-linear
+        accent=beer.middleLevel
+        warn=beer.warnLevel 
+        value=beer.percentLeft}}
+
     {{/paper-card}}
   </div>
 {{else}}

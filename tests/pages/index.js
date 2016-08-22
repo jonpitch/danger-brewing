@@ -46,7 +46,8 @@ export default create({
         name: text('span[data-test="name"]'),
         style: text('span[data-test="style"]'),
         canDelete: isVisible('md-card-actions button'),
-        delete: clickable('md-card-actions button')
+        delete: clickable('md-card-actions button'),
+        progress: isVisible('md-progress-linear')
       }
     })
   }
