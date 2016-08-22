@@ -56,7 +56,9 @@ export default create({
         type: text('div.md-list-item-text h4'),
         pouring: text('div.md-list-item-text p'),
         hasDelete: isVisible('span[data-test="delete-tap"]'),
-        delete: clickable('span[data-test="delete-tap"] button')
+        delete: clickable('span[data-test="delete-tap"] button'),
+        co2: isVisible('md-icon[aria-label="local-gas-station"]'),
+        nitro: isVisible('md-icon[aria-label="ev-station"]')
       }
     }),
 

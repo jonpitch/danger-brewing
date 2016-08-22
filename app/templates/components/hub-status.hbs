@@ -70,7 +70,12 @@
             {{#paper-content class="md-whiteframe-z1 list-demo"}}
               {{#paper-list}}
                 {{#paper-item class="md-3-line"}}
-                  {{paper-icon "local-drink" size=36}}
+                  {{#if tap.nitro}}
+                    {{paper-icon "ev-station" size=36}}
+                  {{else}}
+                    {{paper-icon "local-gas-station" size=36}}
+                  {{/if}}
+
                   <div class="md-list-item-text">
                     <h3>{{tap.name}}</h3>
                     <h4>

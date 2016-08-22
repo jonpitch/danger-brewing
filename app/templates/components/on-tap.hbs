@@ -17,7 +17,17 @@
           {{#text.subhead}}
             <span data-test="style">{{beer.style}}</span> - <span data-test="abv">{{beer.abv}}%</span>
           {{/text.subhead}}
-          {{! TODO - nitrogen }}
+          {{#text.subhead}}
+            {{#if beer.lastPoured}}
+              <span data-test="date">
+                {{t "components.onTap.lastPour" date=(moment-from-now beer.lastPoured)}}
+              </span>
+            {{else}}
+              <span data-test="arrived">
+                {{t "components.onTap.fresh"}}
+              </span>
+            {{/if}}
+          {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
       {{#card.actions}}
@@ -32,7 +42,7 @@
       {{! keg level - remaining }}
       {{paper-progress-linear
         accent=beer.middleLevel
-        warn=beer.warnLevel 
+        warn=beer.warnLevel
         value=beer.percentLeft}}
 
     {{/paper-card}}

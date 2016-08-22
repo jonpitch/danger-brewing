@@ -90,3 +90,33 @@ test('middle level', function(assert) {
     assert.ok(beer.get('warnLevel'), 'at warn threshold indicates warning');
   });
 });
+
+test('last poured - has pours', function(assert) {
+  Ember.run(() => {
+    const aPour = this.store().createRecord('pour', {
+      ounces: 5,
+      created: 100
+    });
+
+    const bPour = this.store().createRecord('pour', {
+      ounces: 5,
+      created: 101
+    });
+
+    let beer = this.subject({
+      ounces: 100,
+      pours: [aPour, bPour]
+    });
+
+    assert.equal(beer.get('lastPoured'), 101, 'pours ordered descending');
+  });
+});
+
+test('last poured - no pours', function(assert) {
+  let beer = this.subject({
+    ounces: 100,
+    pours: []
+  });
+
+  assert.equal(beer.get('lastPoured'), null, 'no pours = just arrived');
+});

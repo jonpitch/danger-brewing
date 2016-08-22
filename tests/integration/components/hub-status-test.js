@@ -85,12 +85,16 @@ test('it renders with taps', function(assert) {
       i18n.t('components.hubStatus.taps.co2'),
       'a-tap has correct carbonation'
     );
+    assert.ok(page.hub.taps(0).co2, 'correct gas icon');
+    assert.notOk(page.hub.taps(0).nitro, 'not nitro gas icon');
     assert.equal(
       page.hub.taps(0).pouring,
       i18n.t('components.hubStatus.taps.notPouring'),
       'nothing on tap for b-tap'
     );
     assert.equal(page.hub.taps(1).name, 'b-tap', 'correct name for b-tap');
+    assert.ok(page.hub.taps(1).nitro, 'correct gas icon');
+    assert.notOk(page.hub.taps(1).co2, 'not co2 gas icon');
     assert.equal(
       page.hub.taps(1).type,
       i18n.t('components.hubStatus.taps.nitro'),

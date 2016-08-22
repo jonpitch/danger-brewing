@@ -54,5 +54,16 @@ export default Model.extend({
     const warn = config.APP.beer.warn;
 
     return level <= middle && level > warn;
+  }),
+
+  // the last poured date
+  lastPoured: Ember.computed('pours.@each.created', function() {
+    const pours = this.get('pours');
+    if (Ember.isEmpty(pours) || pours.length === 0) {
+      return null;
+    }
+
+    const ordered = pours.sortBy('created').reverse();
+    return ordered.get('firstObject.created');
   })
 });

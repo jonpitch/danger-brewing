@@ -34,7 +34,9 @@ export default {
     onTap: {
       add: 'Add Beer',
       empty: 'there\'s nothing on tap at the moment.',
-      nitro: 'Nitrogen'
+      nitro: 'Nitrogen',
+      lastPour: 'Last Poured: {{date}}',
+      fresh: 'Just arrived'
     },
     addBeer: {
       name: 'Beer Name',
