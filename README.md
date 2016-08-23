@@ -2,6 +2,15 @@
 
 The Ember-powered kegerator.
 
+## Overview
+
+This is a web application that collects data from the [Danger Brewing Hub](https://github.com/jonpitch/danger-brewing-hub). Your kegerator might consist of:
+
+* Flow meters - to monitor beer distribution
+* Sensors - to monitor temperature, humidity, etc.
+
+Administer your kegerator in real-time or let everyone know what's on tap.
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
@@ -16,12 +25,11 @@ You will need the following things properly installed on your computer.
 
 * `git clone <repository-url>` this repository
 * change into the new directory
-* `npm install`
-* `bower install`
+* `npm install && bower install`
 
 ## Configuration
 
-* Sign up for [Firebase](https://firebase.google.com/)
+* Sign up for [Firebase](https://firebase.google.com/) - it's free
 * `cd` into this directory
   * `touch .env.dev`
   * `touch .env.production`
@@ -37,6 +45,9 @@ FIREBASE_DOMAIN=my-app.firebaseapp.com
 FIREBASE_DATABASE=https://my-app.firebaseio.com
 FIREBASE_STORAGE=my-app.appspot.com
 ```
+* Setup an admin user
+  * Navigate to your Firebase dashboard, `Auth`
+  * Add a new user with whatever email and password you choose.
 
 ## Running / Development
 
