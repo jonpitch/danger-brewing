@@ -1,4 +1,4 @@
-# Danger Brewing
+# Danger Brewing [![Code Climate](https://codeclimate.com/github/jonpitch/danger-brewing/badges/gpa.svg)](https://codeclimate.com/github/jonpitch/danger-brewing)
 
 The Ember-powered kegerator.
 
