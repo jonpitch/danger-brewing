@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'on-tap',
   session: Ember.inject.service(),
+  store: Ember.inject.service(),
 
   actions: {
 
@@ -15,10 +16,19 @@ export default Ember.Component.extend({
     archiveBeer(beer) {
       // TODO prompt first
 
-      beer.set('kicked', Date.now());
-      beer.set('active', false);
+      // update beer - remove tap from relationship
+      const tap = this.get('store').peekRecord('tap', beer.get('tap.id'));
+      tap.set('beer', null);
+      beer.setProperties({
+        kicked: Date.now(),
+        active: false,
+        tap: null
+      });
+
       beer.save().then(() => {
-        this.sendAction('reload');
+        return tap.save().then(() => {
+          this.sendAction('reload');
+        });
       }).catch(() => {
         beer.rollbackAttributes();
       });
