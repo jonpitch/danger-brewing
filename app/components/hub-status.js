@@ -16,7 +16,7 @@ export default Ember.Component.extend({
       hub.save().then(() => {
         this.set('hub', hub);
       }).catch((reason) => {
-        console.log('unable to create hub ' + reason);
+        console.log(`unable to create hub ${reason}`);
       });
     },
 

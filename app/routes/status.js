@@ -3,13 +3,10 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   model() {
-    // only support one hub for now
-    return new Ember.RSVP.Promise((resolve, reject) => {
-      this.store.findAll('hub').then((hubs) => {
-        resolve(hubs.get('firstObject'));
-      }).catch((reason) => {
-        reject(reason);
-      });
+    return Ember.RSVP.hash({
+      hub: this.store.findAll('hub').then((hubs) => {
+        return hubs.get('firstObject');
+      })
     });
   },
 

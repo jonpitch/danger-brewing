@@ -23,7 +23,6 @@ test('no model to render', function(assert) {
   assert.ok(page.hub.isVisible, 'see hub component');
   assert.ok(page.hub.notSetup, 'see that hub is not setup');
   assert.notOk(page.hub.status.isVisible, 'no status to report');
-  assert.notOk(page.hub.activity.isVisible, 'no activity to report');
   assert.equal(page.hub.taps().count, 0, 'no taps');
   assert.equal(page.hub.sensors().count, 0, 'no sensors');
 });
@@ -41,8 +40,6 @@ test('it renders hub model', function(assert) {
     assert.ok(page.hub.status.isOffline, 'see hub is offline');
     assert.notOk(page.hub.notSetup, 'do not see the "not setup" message');
     assert.ok(page.hub.status.isVisible, 'see status card');
-    assert.ok(page.hub.activity.isVisible, 'see last activity card');
-    assert.equal(page.hub.activity.date, '2016-01-01', 'see last active date');
     assert.equal(page.hub.taps().count, 0, 'no taps');
     assert.equal(page.hub.sensors().count, 0, 'no sensors');
   });

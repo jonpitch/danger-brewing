@@ -43,12 +43,6 @@ export default create({
       isOffline: isVisible('span[data-test="offline"]')
     },
 
-    activity: {
-      scope: 'div[data-test="activity"]',
-      isVisible: isVisible(),
-      date: text('span[data-test="last"]')
-    },
-
     taps: collection({
       itemScope: 'div[data-test="tap"]',
       item: {
