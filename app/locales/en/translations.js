@@ -36,7 +36,7 @@ export default {
       empty: 'there\'s nothing on tap at the moment.',
       nitro: 'Nitrogen',
       lastPour: 'Last Poured: {{date}}',
-      fresh: 'Just arrived'
+      tapped: 'Tapped {{date}}'
     },
     addBeer: {
       name: 'Beer Name',

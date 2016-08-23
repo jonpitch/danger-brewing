@@ -15,16 +15,20 @@
             <span data-test="name">{{beer.name}}</span>
           {{/text.headline}}
           {{#text.subhead}}
-            <span data-test="style">{{beer.style}}</span> - <span data-test="abv">{{beer.abv}}%</span>
+            <span data-test="style">
+              {{beer.style}}
+            </span> -
+            <span data-test="abv">
+              {{beer.abv}}%
+            </span> -
+            <span data-test="tapped">
+              {{t "components.onTap.tapped" date=(moment-from-now beer.tapped)}}
+            </span>
           {{/text.subhead}}
           {{#text.subhead}}
             {{#if beer.lastPoured}}
               <span data-test="date">
                 {{t "components.onTap.lastPour" date=(moment-from-now beer.lastPoured)}}
-              </span>
-            {{else}}
-              <span data-test="arrived">
-                {{t "components.onTap.fresh"}}
               </span>
             {{/if}}
           {{/text.subhead}}
