@@ -22,13 +22,11 @@ export function stubHubAndTapsFixture() {
         nitro: false
       },
       '-KO1HdKr4VxkSg5p0OEU': {
-        beer: '-KO1N4Ofi1IwSetMe9ta',
         hub: '-KO1EJBmskdNLOc1S-4c',
         name: 'tap-2',
         nitro: true
       },
       '-KO1Z5HatLNiqByIxLfj': {
-        beer: '-KO1_pCVEvHhpYKi-Lah',
         hub: '-KO1EJBmskdNLOc1S-4c',
         name: 'tap-nitro',
         nitro: false

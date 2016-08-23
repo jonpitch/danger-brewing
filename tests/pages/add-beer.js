@@ -18,6 +18,7 @@ export default create({
   url: url,
 
   noHub: isVisible('p[data-test="no-hub"]'),
+  noTaps: isVisible('p[data-test="no-taps"]'),
 
   form: {
     scope: 'add-beer',

@@ -47,7 +47,8 @@ export default {
       nitro: 'Nitro',
       cancel: 'Cancel',
       save: 'Add Beer',
-      noHub: 'Set up a hub first'
+      noHub: 'Set up a hub first',
+      noTaps: 'All taps are occupied'
     },
     hubStatus: {
       hub: {
