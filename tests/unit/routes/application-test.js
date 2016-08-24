@@ -1,7 +1,9 @@
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:application', 'Unit | Route | application', {
-  needs: []
+  needs: [
+    'service:metrics'
+  ]
 });
 
 test('it exists', function(assert) {

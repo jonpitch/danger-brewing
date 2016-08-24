@@ -30,24 +30,43 @@ You will need the following things properly installed on your computer.
 ## Configuration
 
 * Sign up for [Firebase](https://firebase.google.com/) - it's free
+  * You might want to create two projects, for `development` and `production`.
 * `cd` into this directory
-  * `touch .env.dev`
-  * `touch .env.production`
+  * `cp .env.example .env.dev`
+  * `cp .env.example .env.production`
 * Update each file with `ENV` variables
   * `FIREBASE_API_KEY`: Firebase API Key
   * `FIREBASE_DOMAIN`: Firebase domain
   * `FIREBASE_DATABASE`: Firebase database URL
   * `FIREBASE_STORAGE`: Firebase storage bucket
+  * `GA`: Google Analytics property ID
 * The resulting file(s) should look like:
 ```
 FIREBASE_API_KEY=abc123
 FIREBASE_DOMAIN=my-app.firebaseapp.com
 FIREBASE_DATABASE=https://my-app.firebaseio.com
 FIREBASE_STORAGE=my-app.appspot.com
+GA=UA-000-12
 ```
 * Setup an admin user
   * Navigate to your Firebase dashboard, `Auth`
+  * Enable email/password authentication.
   * Add a new user with whatever email and password you choose.
+* Add database index
+  * Navigate to your Firebase dashboard, `Database`
+  * Click the `Rules` tab
+  * Update your rules to look as follows:
+  ```
+  {
+    "rules": {
+      ".read": true,
+      ".write": "auth != null",
+      "beers": {
+        ".indexOn": ["active"]
+      }
+    }
+  }
+  ```
 
 ## Running / Development
 
