@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
+import config from 'danger-brewing/config/environment';
 
 export default Model.extend({
   name: attr('string'),
@@ -28,5 +29,43 @@ export default Model.extend({
       poured += p.get('ounces');
     });
     return ounces - poured;
+  }),
+
+  // what percent of the total is left
+  percentLeft: Ember.computed('ouncesLeft', 'pours.@each.ounces', function() {
+    const ounces = this.get('ounces');
+    const left = this.get('ouncesLeft');
+
+    return parseInt((left / ounces) * 100, 10);
+  }),
+
+  // warn when the keg is close to kicked
+  warnLevel: Ember.computed('percentLeft', 'pours.@each.ounces', function() {
+    const level = this.get('percentLeft');
+    const warn = config.APP.beer.warn;
+
+    return level <= warn;
+  }),
+
+  // keg is somewhere in the middle
+  middleLevel: Ember.computed('percentLeft', 'pours.@each.ounces', function() {
+    const level = this.get('percentLeft');
+    const middle = config.APP.beer.middle;
+    const warn = config.APP.beer.warn;
+
+    return level <= middle && level > warn;
+  }),
+
+  // the last poured date
+  sortedPours: Ember.computed.sort('pours', 'pourSortDescending'),
+  pourSortDescending: ['created:desc'],
+
+  lastPoured: Ember.computed('sortedPours', function() {
+    const pours = this.get('sortedPours');
+    if (Ember.isEmpty(pours) || pours.length === 0) {
+      return null;
+    }
+
+    return pours.get('firstObject.created');
   })
 });

@@ -23,7 +23,6 @@ test('no model to render', function(assert) {
   assert.ok(page.hub.isVisible, 'see hub component');
   assert.ok(page.hub.notSetup, 'see that hub is not setup');
   assert.notOk(page.hub.status.isVisible, 'no status to report');
-  assert.notOk(page.hub.activity.isVisible, 'no activity to report');
   assert.equal(page.hub.taps().count, 0, 'no taps');
   assert.equal(page.hub.sensors().count, 0, 'no sensors');
 });
@@ -41,8 +40,6 @@ test('it renders hub model', function(assert) {
     assert.ok(page.hub.status.isOffline, 'see hub is offline');
     assert.notOk(page.hub.notSetup, 'do not see the "not setup" message');
     assert.ok(page.hub.status.isVisible, 'see status card');
-    assert.ok(page.hub.activity.isVisible, 'see last activity card');
-    assert.equal(page.hub.activity.date, '2016-01-01', 'see last active date');
     assert.equal(page.hub.taps().count, 0, 'no taps');
     assert.equal(page.hub.sensors().count, 0, 'no sensors');
   });
@@ -85,12 +82,16 @@ test('it renders with taps', function(assert) {
       i18n.t('components.hubStatus.taps.co2'),
       'a-tap has correct carbonation'
     );
+    assert.ok(page.hub.taps(0).co2, 'correct gas icon');
+    assert.notOk(page.hub.taps(0).nitro, 'not nitro gas icon');
     assert.equal(
       page.hub.taps(0).pouring,
       i18n.t('components.hubStatus.taps.notPouring'),
       'nothing on tap for b-tap'
     );
     assert.equal(page.hub.taps(1).name, 'b-tap', 'correct name for b-tap');
+    assert.ok(page.hub.taps(1).nitro, 'correct gas icon');
+    assert.notOk(page.hub.taps(1).co2, 'not co2 gas icon');
     assert.equal(
       page.hub.taps(1).type,
       i18n.t('components.hubStatus.taps.nitro'),

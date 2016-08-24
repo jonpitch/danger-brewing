@@ -34,7 +34,9 @@ export default {
     onTap: {
       add: 'Add Beer',
       empty: 'there\'s nothing on tap at the moment.',
-      nitro: 'Nitrogen'
+      nitro: 'Nitrogen',
+      lastPour: 'Last Poured: {{date}}',
+      tapped: 'Tapped {{date}}'
     },
     addBeer: {
       name: 'Beer Name',
@@ -45,7 +47,8 @@ export default {
       nitro: 'Nitro',
       cancel: 'Cancel',
       save: 'Add Beer',
-      noHub: 'Set up a hub first'
+      noHub: 'Set up a hub first',
+      noTaps: 'All taps are occupied'
     },
     hubStatus: {
       hub: {

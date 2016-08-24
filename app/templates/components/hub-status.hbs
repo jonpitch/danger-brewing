@@ -29,28 +29,7 @@
     </div>
 
     {{! hub info }}
-    <div class="layout-column flex-xs flex-gt-xs-50">
-      <div data-test="activity">
-        {{#paper-card as |card|}}
-          {{#card.title as |title|}}
-            {{#title.text as |text|}}
-              {{#text.headline}}
-                {{t "components.hubStatus.hub.lastActive"}}
-              {{/text.headline}}
-              {{#text.subhead}}
-                <span data-test="last">
-                  {{#if hub.lastActivity}}
-                    {{hub.lastActivity}}
-                  {{else}}
-                    {{t "components.hubStatus.hub.noActivity"}}
-                  {{/if}}
-                </span>
-              {{/text.subhead}}
-            {{/title.text}}
-          {{/card.title}}
-        {{/paper-card}}
-      </div>
-    </div>
+    {{! TODO placeholder for future card }}
   </div>
 
   <div class="layout-row layout-xs-column">
@@ -70,7 +49,12 @@
             {{#paper-content class="md-whiteframe-z1 list-demo"}}
               {{#paper-list}}
                 {{#paper-item class="md-3-line"}}
-                  {{paper-icon "local-drink" size=36}}
+                  {{#if tap.nitro}}
+                    {{paper-icon "ev-station" size=36}}
+                  {{else}}
+                    {{paper-icon "local-gas-station" size=36}}
+                  {{/if}}
+
                   <div class="md-list-item-text">
                     <h3>{{tap.name}}</h3>
                     <h4>

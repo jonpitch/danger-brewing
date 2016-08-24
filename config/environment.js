@@ -14,12 +14,12 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com *.firebaseio.com",
+      'script-src': "'self' 'unsafe-eval' 'unsafe-inline' apis.google.com *.firebaseio.com www.google-analytics.com",
       'frame-src': "'self' https://*.firebaseapp.com https://*.firebaseio.com",
       'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
-      'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com",
+      'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com www.google-analytics.com",
       'font-src': "'self' http://fonts.gstatic.com",
-      'img-src': "'self' data:",
+      'img-src': "'self' data: www.google-analytics.com",
       'media-src': "'self'"
     },
 
@@ -41,9 +41,23 @@ module.exports = function(environment) {
       defaultLocale: 'en'
     },
 
+    // metrics
+    metricsAdapters: [{
+      name: 'GoogleAnalytics',
+      environments: ['production'],
+      config: {
+        id: process.env.GA
+      }
+    }],
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      beer: {
+        // thresholds for keg-level notification states
+        middle: 50,
+        warn: 15
+      }
     }
   };
 

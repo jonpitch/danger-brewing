@@ -1,85 +1,91 @@
-{{#paper-card as |card|}}
-  {{#card.content class="layout-column layout-align-center"}}
+{{#if availableTaps}}
 
-    {{! name }}
-    <div data-test="name">
-      {{paper-input
-        id="beer-name"
-        label=(t "components.addBeer.name")
-        value=name
-        required=true
-        onChange=(action (mut name))
-        errors=validations.attrs.name.messages}}
-    </div>
+  {{#paper-card as |card|}}
+    {{#card.content class="layout-column layout-align-center"}}
 
-    {{! style }}
-    <div data-test="style">
-      {{paper-input
-        id="beer-style"
-        label=(t "components.addBeer.style")
-        value=style
-        required=true
-        onChange=(action (mut style))
-        errors=validations.attrs.style.messages}}
-    </div>
-
-    {{! tap }}
-    <div data-test="tap">
-      {{#paper-select
-        id="beer-tap"
-        placeholder="Tap"
-        value=tapName
-        onChange=(action (mut tapName))
-      }}
-        {{#each taps as |tap|}}
-          {{#paper-option value=tap.name}}
-            {{tap.name}}
-          {{/paper-option}}
-        {{/each}}
-      {{/paper-select}}
-    </div>
-
-    {{! abv }}
-    <div data-test="abv">
-      {{paper-input
-        id="beer-abv"
-        label=(t "components.addBeer.abv")
-        type="number"
-        value=abv
-        required=true
-        onChange=(action (mut abv))
-        errors=validations.attrs.abv.messages}}
-    </div>
-
-    {{! ounces }}
-    <div data-test="ounces">
-      {{paper-input
-        id="beer-ounces"
-        label=(t "components.addBeer.oz")
-        type="number"
-        value=ounces
-        required=true
-        onChange=(action (mut ounces))
-        errors=validations.attrs.ounces.messages}}
-    </div>
-
-  {{/card.content}}
-  {{#card.actions}}
-    <div data-test="cancel">
-      {{#paper-button onClick=(action "cancel")}}
-        {{t "components.addBeer.cancel"}}
-      {{/paper-button}}
-    </div>
-    {{#if isSaving}}
-      <div data-test="loading">
-        {{paper-progress-circular}}
+      {{! name }}
+      <div data-test="name">
+        {{paper-input
+          id="beer-name"
+          label=(t "components.addBeer.name")
+          value=name
+          required=true
+          onChange=(action (mut name))
+          errors=validations.attrs.name.messages}}
       </div>
-    {{else}}
-      <div data-test="submit">
-        {{#paper-button raised=true primary=true onClick=(action "save")}}
-          {{t "components.addBeer.save"}}
+
+      {{! style }}
+      <div data-test="style">
+        {{paper-input
+          id="beer-style"
+          label=(t "components.addBeer.style")
+          value=style
+          required=true
+          onChange=(action (mut style))
+          errors=validations.attrs.style.messages}}
+      </div>
+
+      {{! tap }}
+      <div data-test="tap">
+        {{#paper-select
+          id="beer-tap"
+          placeholder="Tap"
+          value=tapName
+          onChange=(action (mut tapName))
+        }}
+          {{#each availableTaps as |tap|}}
+            {{#paper-option value=tap.name}}
+              {{tap.name}}
+            {{/paper-option}}
+          {{/each}}
+        {{/paper-select}}
+      </div>
+
+      {{! abv }}
+      <div data-test="abv">
+        {{paper-input
+          id="beer-abv"
+          label=(t "components.addBeer.abv")
+          type="number"
+          value=abv
+          required=true
+          onChange=(action (mut abv))
+          errors=validations.attrs.abv.messages}}
+      </div>
+
+      {{! ounces }}
+      <div data-test="ounces">
+        {{paper-input
+          id="beer-ounces"
+          label=(t "components.addBeer.oz")
+          type="number"
+          value=ounces
+          required=true
+          onChange=(action (mut ounces))
+          errors=validations.attrs.ounces.messages}}
+      </div>
+
+    {{/card.content}}
+    {{#card.actions}}
+      <div data-test="cancel">
+        {{#paper-button onClick=(action "cancel")}}
+          {{t "components.addBeer.cancel"}}
         {{/paper-button}}
       </div>
-    {{/if}}
-  {{/card.actions}}
-{{/paper-card}}
+      {{#if isSaving}}
+        <div data-test="loading">
+          {{paper-progress-circular}}
+        </div>
+      {{else}}
+        <div data-test="submit">
+          {{#paper-button raised=true primary=true onClick=(action "save")}}
+            {{t "components.addBeer.save"}}
+          {{/paper-button}}
+        </div>
+      {{/if}}
+    {{/card.actions}}
+  {{/paper-card}}
+
+{{else}}
+  <p data-test="no-taps">{{t "components.addBeer.noTaps"}}</p>
+{{/if}}

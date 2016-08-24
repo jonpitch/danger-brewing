@@ -27,6 +27,19 @@ export default Ember.Component.extend(Validations, {
   abv: null,
   ounces: null,
 
+  // taps without beers pouring
+  availableTaps: Ember.computed('taps', function() {
+    const taps = this.get('taps');
+    let available = [];
+    taps.forEach(function(t) {
+      if (Ember.isEmpty(t.get('beer.content'))) {
+        available.push(t);
+      }
+    });
+
+    return available;
+  }),
+
   actions: {
 
     // cancel adding beer

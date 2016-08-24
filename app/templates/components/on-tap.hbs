@@ -15,9 +15,23 @@
             <span data-test="name">{{beer.name}}</span>
           {{/text.headline}}
           {{#text.subhead}}
-            <span data-test="style">{{beer.style}}</span> - <span data-test="abv">{{beer.abv}}%</span>
+            <span data-test="style">
+              {{beer.style}}
+            </span> -
+            <span data-test="abv">
+              {{beer.abv}}%
+            </span> -
+            <span data-test="tapped">
+              {{t "components.onTap.tapped" date=(moment-from-now beer.tapped)}}
+            </span>
           {{/text.subhead}}
-          {{! TODO - nitrogen }}
+          {{#text.subhead}}
+            {{#if beer.lastPoured}}
+              <span data-test="date">
+                {{t "components.onTap.lastPour" date=(moment-from-now beer.lastPoured)}}
+              </span>
+            {{/if}}
+          {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
       {{#card.actions}}
@@ -28,6 +42,13 @@
           {{/paper-button}}
         {{/if}}
       {{/card.actions}}
+
+      {{! keg level - remaining }}
+      {{paper-progress-linear
+        accent=beer.middleLevel
+        warn=beer.warnLevel
+        value=beer.percentLeft}}
+
     {{/paper-card}}
   </div>
 {{else}}
