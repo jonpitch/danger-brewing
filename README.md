@@ -33,7 +33,7 @@ You will need the following things properly installed on your computer.
   * You might want to create two projects, for `development` and `production`.
 * `cd` into this directory
   * `cp .env.example .env.dev`
-  * `cp .env.example .env.production`
+  * `cp .env.example .env.production` - if using [ember-cli-deploy](https://github.com/ember-cli-deploy/ember-cli-deploy)
 * Update each file with `ENV` variables
   * `FIREBASE_API_KEY`: Firebase API Key
   * `FIREBASE_DOMAIN`: Firebase domain
@@ -67,6 +67,13 @@ GA=UA-000-12
     }
   }
   ```
+* Integrate with your kegerator - Launch the application:
+  * `ember server`
+  * Navigate to `Login`
+  * Log in as your admin user you setup.
+  * Navigate to `Status` and `Add Hub`.
+    * Now that you have a hub, you can add `Taps` and `Sensors`.
+  * The Hub IDs, along with tap and sensor IDs, will be used to integrate your kegerator to Firebase.
 
 ## Running / Development
 
@@ -89,7 +96,14 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Coming soon.
+* Heroku
+  * Set your ENV values, similar to `.env.example`
+  * `heroku buildpacks:set https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz`
+  * `git push heroku master`
+
+* `ember-cli-deploy`
+  * For an overview, go [here](http://ember-cli-deploy.com/docs/v0.6.x/deployment-strategies-overview/)
+  * The [lightning strategy](http://ember-cli-deploy.com/docs/v0.6.x/the-lightning-strategy) is recommended.
 
 ## Contributing
 
