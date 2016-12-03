@@ -36,7 +36,7 @@ function release {
   RELEASE_JSON="{\"tag_name\": \"v${RELEASE}\", \"target_commitish\": \"master\", \"name\": \"v${RELEASE}\", \"body\": \"${BODY}\"}"
 
   # issue github release
-  curl --data "$RELEASE_JSON" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/b-lab-org/impact-app/releases?access_token=$GH_ACCESS_TOKEN
+  curl --data "$RELEASE_JSON" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/jonpitch/danger-brewing/releases?access_token=$GH_ACCESS_TOKEN
 }
 
 # TODO deploy application
