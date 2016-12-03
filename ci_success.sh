@@ -1,9 +1,3 @@
-#!/bin/bash
-if [ "$TRAVIS_BRANCH" == "master" ]; then
-    release
-    deploy
-fi
-
 # cut latest tag - based on changelog
 # issue a GitHub release
 function release {
@@ -46,6 +40,13 @@ function release {
 }
 
 # TODO deploy application
+# already auto-deployed to Heroku - instead do other build processes.
 function deploy {
   echo "not yet implemented"
 }
+
+#!/bin/bash
+if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  release
+  deploy
+fi
