@@ -1,3 +1,7 @@
+## 0.0.3
+* [Cleanup] Updating dependencies.
+* [Cleanup] Removing `jscsrc` lint rule overrides.
+
 ## 0.0.2
 * [Documentation] Deployments and Integration
 
