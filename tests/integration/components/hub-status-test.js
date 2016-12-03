@@ -2,18 +2,21 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import page from 'danger-brewing/tests/pages/status';
+const {
+  run
+} = Ember;
 
 let store;
 let i18n;
 
 moduleForComponent('hub-status', 'Integration | Component | hub status', {
   integration: true,
-  beforeEach: function() {
+  beforeEach() {
     page.setContext(this);
     store = this.container.lookup('service:store');
     i18n = this.container.lookup('service:i18n');
   },
-  afterEach: function() {
+  afterEach() {
     page.removeContext();
   }
 });
@@ -28,7 +31,7 @@ test('no model to render', function(assert) {
 });
 
 test('it renders hub model', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const model = store.createRecord('hub', {
       status: 'offline',
       lastActivity: '2016-01-01'
@@ -46,7 +49,7 @@ test('it renders hub model', function(assert) {
 });
 
 test('it renders with taps', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const model = store.createRecord('hub', {
       status: 'offline'
     });
@@ -106,7 +109,7 @@ test('it renders with taps', function(assert) {
 });
 
 test('it renders with sensors', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const model = store.createRecord('hub', {
       status: 'offline'
     });

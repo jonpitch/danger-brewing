@@ -1,7 +1,11 @@
 import Ember from 'ember';
+const {
+  Route,
+  inject
+} = Ember;
 
-export default Ember.Route.extend({
-  session: Ember.inject.service(),
+export default Route.extend({
+  session: inject.service(),
 
   beforeModel() {
     return this.get('session').fetch().catch(() => { });

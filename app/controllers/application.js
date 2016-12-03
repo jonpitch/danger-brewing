@@ -1,7 +1,11 @@
 import Ember from 'ember';
+const {
+  Controller,
+  inject
+} = Ember;
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service(),
+export default Controller.extend({
+  session: inject.service(),
   leftSideBarOpen: false,
 
   actions: {

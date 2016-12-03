@@ -4,10 +4,10 @@ import page from 'danger-brewing/tests/pages/login';
 
 moduleForComponent('hub-status', 'Integration | Component | login form', {
   integration: true,
-  beforeEach: function() {
+  beforeEach() {
     page.setContext(this);
   },
-  afterEach: function() {
+  afterEach() {
     page.removeContext();
   }
 });
@@ -25,9 +25,9 @@ test('validation - all', function(assert) {
   page.render(hbs`{{login-form}}`);
   page.form.submit.click();
   assert.ok(page.form.email.input.hasError, 'email has error state');
-  assert.equal(page.form.email.errors, 3, 'correct # of errors');
+  assert.equal(page.form.email.errors, 2, 'email correct # of errors');
   assert.ok(page.form.password.input.hasError, 'password has error state');
-  assert.equal(page.form.password.errors, 2, 'correct # of errors');
+  assert.equal(page.form.password.errors, 2, 'password correct # of errors');
 });
 
 test('validation - email', function(assert) {
@@ -35,16 +35,16 @@ test('validation - email', function(assert) {
   page.form.password.input.fillIn('somevalidpassword');
   page.form.submit.click();
   assert.ok(page.form.email.input.hasError, 'email has error state');
-  assert.equal(page.form.email.errors, 3, 'correct # of errors');
+  assert.equal(page.form.email.errors, 2, 'email correct # of errors');
   assert.notOk(page.form.password.input.hasError, 'password does not have error state');
-  assert.equal(page.form.password.errors, 0, 'correct # of errors');
+  assert.equal(page.form.password.errors, 0, 'password correct # of errors');
 
   page.form.email.input.fillIn('bad@email');
   page.form.submit.click();
   assert.ok(page.form.email.input.hasError, 'email has error state');
-  assert.equal(page.form.email.errors, 1, 'correct # of errors');
+  assert.equal(page.form.email.errors, 1, 'email correct # of errors');
   assert.notOk(page.form.password.input.hasError, 'password does not have error state');
-  assert.equal(page.form.password.errors, 0, 'correct # of errors');
+  assert.equal(page.form.password.errors, 0, 'password correct # of errors');
 });
 
 test('validation - password', function(assert) {
@@ -52,7 +52,7 @@ test('validation - password', function(assert) {
   page.form.email.input.fillIn('hugh.mann@internet.com');
   page.form.submit.click();
   assert.notOk(page.form.email.input.hasError, 'email has error state');
-  assert.equal(page.form.email.errors, 0, 'correct # of errors');
+  assert.equal(page.form.email.errors, 0, 'email correct # of errors');
   assert.ok(page.form.password.input.hasError, 'password has error state');
-  assert.equal(page.form.password.errors, 2, 'correct # of errors');
+  assert.equal(page.form.password.errors, 2, 'password correct # of errors');
 });

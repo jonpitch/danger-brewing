@@ -14,7 +14,7 @@ const url = '/login';
 
 export default create({
   visit: visitable(url),
-  url: url,
+  url,
 
   form: {
     scope: 'login-form',

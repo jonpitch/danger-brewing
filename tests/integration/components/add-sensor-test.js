@@ -4,10 +4,10 @@ import page from 'danger-brewing/tests/pages/add-sensor';
 
 moduleForComponent('hub-status', 'Integration | Component | add sensor', {
   integration: true,
-  beforeEach: function() {
+  beforeEach() {
     page.setContext(this);
   },
-  afterEach: function() {
+  afterEach() {
     page.removeContext();
   }
 });

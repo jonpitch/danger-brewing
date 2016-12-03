@@ -14,7 +14,7 @@ const url = '/tap/add';
 
 export default create({
   visit: visitable(url),
-  url: url,
+  url,
 
   form: {
     scope: 'add-tap',

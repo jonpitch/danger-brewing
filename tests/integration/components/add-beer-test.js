@@ -6,7 +6,7 @@ let taps = [];
 
 moduleForComponent('hub-status', 'Integration | Component | add beer', {
   integration: true,
-  beforeEach: function() {
+  beforeEach() {
     page.setContext(this);
 
     const tap = this.container.lookup('service:store').createRecord('tap', {
@@ -14,7 +14,7 @@ moduleForComponent('hub-status', 'Integration | Component | add beer', {
     });
     taps.push(tap);
   },
-  afterEach: function() {
+  afterEach() {
     page.removeContext();
   }
 });

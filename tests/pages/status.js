@@ -11,7 +11,7 @@ const url = '/status';
 
 export default create({
   visit: visitable(url),
-  url: url,
+  url,
 
   hub: {
     scope: 'hub-status',

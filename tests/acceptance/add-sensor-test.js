@@ -10,8 +10,8 @@ import { stubHubOnlyFixture } from 'danger-brewing/tests/helpers/fixtures';
 let application;
 
 moduleForAcceptance('Acceptance | add sensor', {
-  beforeEach: function() { },
-  afterEach: function() {
+  beforeEach() { },
+  afterEach() {
     destroyFirebaseApp(application);
   }
 });

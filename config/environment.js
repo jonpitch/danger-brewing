@@ -3,12 +3,16 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'danger-brewing',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
 
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 

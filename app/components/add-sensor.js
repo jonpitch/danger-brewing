@@ -2,6 +2,10 @@ import Ember from 'ember';
 import {
   validator, buildValidations
 } from 'ember-cp-validations';
+const {
+  Component,
+  inject
+} = Ember;
 
 const Validations = buildValidations({
   name: validator('presence', {
@@ -10,9 +14,9 @@ const Validations = buildValidations({
   })
 });
 
-export default Ember.Component.extend(Validations, {
+export default Component.extend(Validations, {
   tagName: 'add-sensor',
-  store: Ember.inject.service(),
+  store: inject.service(),
   isSaving: false,
 
   // model
@@ -40,8 +44,8 @@ export default Ember.Component.extend(Validations, {
           // create tap and associate to hub
           const hub = this.get('hub');
           const sensor = this.get('store').createRecord('sensor', {
-            name: name,
-            hub: hub
+            name,
+            hub
           });
 
           this.set('isSaving', true);

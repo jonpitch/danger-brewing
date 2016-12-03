@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
+const {
+  run
+} = Ember;
 
 moduleForModel('beer', 'Unit | Model | beer', {
   // Specify the other units that are required for this test.
@@ -10,7 +13,7 @@ moduleForModel('beer', 'Unit | Model | beer', {
 });
 
 test('ounces left - has pours', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const aPour = this.store().createRecord('pour', {
       ounces: 10
     });
@@ -33,7 +36,7 @@ test('ounces left - has pours', function(assert) {
 });
 
 test('ounces left - no pours', function(assert) {
-  Ember.run(() => {
+  run(() => {
     let beer = this.subject({
       ounces: 100,
       pours: []
@@ -44,7 +47,7 @@ test('ounces left - no pours', function(assert) {
 });
 
 test('warn level', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const aPour = this.store().createRecord('pour', {
       ounces: 5
     });
@@ -65,7 +68,7 @@ test('warn level', function(assert) {
 });
 
 test('middle level', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const aPour = this.store().createRecord('pour', {
       ounces: 5
     });
@@ -92,7 +95,7 @@ test('middle level', function(assert) {
 });
 
 test('last poured - has pours', function(assert) {
-  Ember.run(() => {
+  run(() => {
     const aPour = this.store().createRecord('pour', {
       ounces: 5,
       created: 100

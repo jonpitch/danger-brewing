@@ -1,6 +1,9 @@
 import Ember from 'ember';
+const {
+  Route
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   // get beer data - only active beers
   getBeers() {

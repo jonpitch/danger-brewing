@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
+const {
+  run
+} = Ember;
 
 moduleForModel('hub', 'Unit | Model | hub', {
   needs: [
@@ -9,7 +12,7 @@ moduleForModel('hub', 'Unit | Model | hub', {
 });
 
 test('is online', function(assert) {
-  Ember.run(() => {
+  run(() => {
     let model = this.subject({
       status: 'online'
     });

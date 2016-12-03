@@ -2,6 +2,12 @@ import Ember from 'ember';
 import {
   validator, buildValidations
 } from 'ember-cp-validations';
+const {
+  Component,
+  inject,
+  computed,
+  isEmpty
+} = Ember;
 
 const required = validator('presence', {
   presence: true,
@@ -15,9 +21,9 @@ const Validations = buildValidations({
   abv: required
 });
 
-export default Ember.Component.extend(Validations, {
+export default Component.extend(Validations, {
   tagName: 'add-beer',
-  store: Ember.inject.service(),
+  store: inject.service(),
   isSaving: false,
 
   // model
@@ -28,11 +34,11 @@ export default Ember.Component.extend(Validations, {
   ounces: null,
 
   // taps without beers pouring
-  availableTaps: Ember.computed('taps', function() {
+  availableTaps: computed('taps', function() {
     const taps = this.get('taps');
     let available = [];
     taps.forEach(function(t) {
-      if (Ember.isEmpty(t.get('beer.content'))) {
+      if (isEmpty(t.get('beer.content'))) {
         available.push(t);
       }
     });
@@ -68,11 +74,11 @@ export default Ember.Component.extend(Validations, {
 
           const tap = this.get('taps').findBy('name', tapName);
           const beer = this.get('store').createRecord('beer', {
-            name: name,
-            style: style,
-            tap: tap,
-            abv: abv,
-            ounces: ounces,
+            name,
+            style,
+            tap,
+            abv,
+            ounces,
             tapped: Date.now()
           });
 

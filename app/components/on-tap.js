@@ -1,9 +1,13 @@
 import Ember from 'ember';
+const {
+  Component,
+  inject
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'on-tap',
-  session: Ember.inject.service(),
-  store: Ember.inject.service(),
+  session: inject.service(),
+  store: inject.service(),
 
   actions: {
 
