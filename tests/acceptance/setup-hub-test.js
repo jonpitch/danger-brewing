@@ -12,8 +12,8 @@ import {
 let application;
 
 moduleForAcceptance('Acceptance | setup hub', {
-  beforeEach: function() { },
-  afterEach: function() {
+  beforeEach() { },
+  afterEach() {
     destroyFirebaseApp(application);
   }
 });

@@ -1,9 +1,13 @@
 import Ember from 'ember';
+const {
+  Route,
+  RSVP
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   model() {
-    return Ember.RSVP.hash({
+    return RSVP.hash({
       hub: this.store.findAll('hub').then((hubs) => {
         return hubs.get('firstObject');
       })

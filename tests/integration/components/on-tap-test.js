@@ -2,28 +2,31 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import page from 'danger-brewing/tests/pages/index';
+const {
+  run
+} = Ember;
 
 let store;
 
 moduleForComponent('hub-status', 'Integration | Component | on tap', {
   integration: true,
-  beforeEach: function() {
+  beforeEach() {
     page.setContext(this);
     store = this.container.lookup('service:store');
   },
-  afterEach: function() {
+  afterEach() {
     page.removeContext();
   }
 });
 
 test('it renders with no beers', function(assert) {
-  this.render(hbs`{{on-tap beers=[]}}`);
+  this.render(hbs`{{on-tap}}`);
   assert.ok(page.onTap.isEmpty, 'no beers on tap');
   assert.equal(page.onTap.beers().count, 0, 'no beers found');
 });
 
 test('it renders with beers', function(assert) {
-  Ember.run(() => {
+  run(() => {
     let aPour = store.createRecord('pour', {
       created: 100,
       ounces: 5

@@ -15,7 +15,7 @@ const url = '/beer/add';
 
 export default create({
   visit: visitable(url),
-  url: url,
+  url,
 
   noHub: isVisible('p[data-test="no-hub"]'),
   noTaps: isVisible('p[data-test="no-taps"]'),

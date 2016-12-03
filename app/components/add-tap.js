@@ -2,6 +2,10 @@ import Ember from 'ember';
 import {
   validator, buildValidations
 } from 'ember-cp-validations';
+const {
+  Component,
+  inject
+} = Ember;
 
 const Validations = buildValidations({
   name: validator('presence', {
@@ -10,9 +14,9 @@ const Validations = buildValidations({
   })
 });
 
-export default Ember.Component.extend(Validations, {
+export default Component.extend(Validations, {
   tagName: 'add-tap',
-  store: Ember.inject.service(),
+  store: inject.service(),
   isSaving: false,
 
   // model
@@ -43,9 +47,9 @@ export default Ember.Component.extend(Validations, {
           // create tap and associate to hub
           const hub = this.get('hub');
           const tap = this.get('store').createRecord('tap', {
-            name: name,
-            nitro: nitro,
-            hub: hub
+            name,
+            nitro,
+            hub
           });
 
           this.set('isSaving', true);

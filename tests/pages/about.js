@@ -10,7 +10,7 @@ const url = '/about';
 
 export default create({
   visit: visitable(url),
-  url: url,
+  url,
 
   read: {
     header: {

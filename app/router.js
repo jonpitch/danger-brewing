@@ -1,10 +1,16 @@
 import Ember from 'ember';
 import config from './config/environment';
+const {
+  Router,
+  inject,
+  run,
+  get
+} = Ember;
 
-const Router = Ember.Router.extend({
+const AppRouter = Router.extend({
   location: config.locationType,
   rootURL: config.rootURL,
-  metrics: Ember.inject.service(),
+  metrics: inject.service(),
 
   didTransition() {
     this._super(...arguments);
@@ -12,11 +18,11 @@ const Router = Ember.Router.extend({
   },
 
   _trackPage() {
-    Ember.run.scheduleOnce('afterRender', this, () => {
+    run.scheduleOnce('afterRender', this, () => {
       const page = document.location.pathname;
       const title = this.getWithDefault('currentRouteName', 'unknown');
 
-      Ember.get(this, 'metrics').trackPage({ page, title });
+      get(this, 'metrics').trackPage({ page, title });
     });
   }
 });
@@ -40,4 +46,4 @@ Router.map(function() {
   });
 });
 
-export default Router;
+export default AppRouter;

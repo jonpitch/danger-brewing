@@ -2,6 +2,10 @@ import Ember from 'ember';
 import {
   validator, buildValidations
 } from 'ember-cp-validations';
+const {
+  Component,
+  inject
+} = Ember;
 
 const Validations = buildValidations({
   email: [
@@ -20,9 +24,9 @@ const Validations = buildValidations({
   })
 });
 
-export default Ember.Component.extend(Validations, {
+export default Component.extend(Validations, {
   tagName: 'login-form',
-  session: Ember.inject.service(),
+  session: inject.service(),
   isLoggingIn: false,
 
   // input
@@ -47,8 +51,8 @@ export default Ember.Component.extend(Validations, {
           this.set('isLoggingIn', true);
           this.get('session').open('firebase', {
             provider: 'password',
-            email: email,
-            password: password
+            email,
+            password
           }).then(() => {
             this.sendAction('redirect');
           }).catch((reason) => {

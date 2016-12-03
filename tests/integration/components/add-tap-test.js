@@ -4,10 +4,10 @@ import page from 'danger-brewing/tests/pages/add-tap';
 
 moduleForComponent('hub-status', 'Integration | Component | add tap', {
   integration: true,
-  beforeEach: function() {
+  beforeEach() {
     page.setContext(this);
   },
-  afterEach: function() {
+  afterEach() {
     page.removeContext();
   }
 });

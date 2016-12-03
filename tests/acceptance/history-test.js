@@ -7,8 +7,8 @@ import page from 'danger-brewing/tests/pages/history';
 let application;
 
 moduleForAcceptance('Acceptance | history', {
-  beforeEach: function() { },
-  afterEach: function() {
+  beforeEach() { },
+  afterEach() {
     destroyFirebaseApp(application);
   }
 });

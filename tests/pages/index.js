@@ -11,7 +11,7 @@ const url = '/';
 
 export default create({
   visit: visitable(url),
-  url: url,
+  url,
 
   toolbar: {
     scope: 'md-card-content md-toolbar',

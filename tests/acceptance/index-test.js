@@ -9,8 +9,8 @@ import { stubApplicationFixture } from 'danger-brewing/tests/helpers/fixtures';
 let application;
 
 moduleForAcceptance('Acceptance | index', {
-  beforeEach: function() { },
-  afterEach: function() {
+  beforeEach() { },
+  afterEach() {
     destroyFirebaseApp(application);
   }
 });

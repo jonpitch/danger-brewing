@@ -10,8 +10,8 @@ import { stubHubAndTapsFixture } from 'danger-brewing/tests/helpers/fixtures';
 let application;
 
 moduleForAcceptance('Acceptance | add beer', {
-  beforeEach: function() { },
-  afterEach: function() {
+  beforeEach() { },
+  afterEach() {
     destroyFirebaseApp(application);
   }
 });

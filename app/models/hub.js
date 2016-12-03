@@ -2,6 +2,9 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { hasMany } from 'ember-data/relationships';
+const {
+  computed
+} = Ember;
 
 export default Model.extend({
   status: attr('string'),
@@ -9,7 +12,7 @@ export default Model.extend({
   sensors: hasMany('sensor', { async: true }),
 
   // is the hub online
-  isOnline: Ember.computed('status', function() {
+  isOnline: computed('status', function() {
     return this.get('status') === 'online';
   })
 });

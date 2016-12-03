@@ -1,11 +1,15 @@
 import Ember from 'ember';
+const {
+  Route,
+  RSVP
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   // fetch hub for reference
   model() {
     // only support one hub for now
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new RSVP.Promise((resolve, reject) => {
       this.store.findAll('hub').then((hubs) => {
         resolve(hubs.get('firstObject'));
       }).catch((reason) => {
