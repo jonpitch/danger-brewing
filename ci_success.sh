@@ -1,6 +1,8 @@
 # cut latest tag - based on changelog
 # issue a GitHub release
 function release {
+  # TODO git config user/email
+
   # get tag and release notes from changelog
   FILE=CHANGELOG.md
   MESSAGES=()
@@ -39,14 +41,7 @@ function release {
   curl --data "$RELEASE_JSON" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/jonpitch/danger-brewing/releases?access_token=$GH_ACCESS_TOKEN
 }
 
-# TODO deploy application
-# already auto-deployed to Heroku - instead do other build processes.
-function deploy {
-  echo "not yet implemented"
-}
-
 #!/bin/bash
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-  release
-  deploy
+  echo "not yet implemented"
 fi

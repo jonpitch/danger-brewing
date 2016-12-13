@@ -30,14 +30,12 @@
         {{#paper-select
           id="beer-tap"
           placeholder="Tap"
-          value=tapName
+          selected=tapName
           onChange=(action (mut tapName))
+          options=availableTaps
+          as |tap|
         }}
-          {{#each availableTaps as |tap|}}
-            {{#paper-option value=tap.name}}
-              {{tap.name}}
-            {{/paper-option}}
-          {{/each}}
+          {{tap.name}}
         {{/paper-select}}
       </div>
 
