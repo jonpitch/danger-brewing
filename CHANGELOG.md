@@ -1,3 +1,8 @@
+## 0.0.4
+* [Feature] Fastboot support
+* [Cleanup] Updated dependencies
+* [Bug Fix] Fixing `ember-paper` select from `0.0.3`
+
 ## 0.0.3
 * [Cleanup] Updating dependencies.
 * [Cleanup] Removing `jscsrc` lint rule overrides.

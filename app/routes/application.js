@@ -6,8 +6,13 @@ const {
 
 export default Route.extend({
   session: inject.service(),
+  fastboot: inject.service(),
 
   beforeModel() {
+    if (this.get('fastboot.isFastboot')) {
+      return this._super(...arguments);
+    }
+
     return this.get('session').fetch().catch(() => { });
   },
 

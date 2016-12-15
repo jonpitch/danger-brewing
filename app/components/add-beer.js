@@ -72,7 +72,7 @@ export default Component.extend(Validations, {
             ounces
           } = this;
 
-          const tap = this.get('taps').findBy('name', tapName);
+          const tap = this.get('taps').findBy('id', tapName.get('id'));
           const beer = this.get('store').createRecord('beer', {
             name,
             style,
